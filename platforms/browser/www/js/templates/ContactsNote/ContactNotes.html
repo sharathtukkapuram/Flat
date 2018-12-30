@@ -1,0 +1,66 @@
+<div class = "search_form">
+    <div class = "row">
+        <div class ="col-sm-12">
+            <div class = "row">
+                <div class = "col-sm-2">
+                    <label>Subject:</label>
+                </div>
+                <div class ="col-sm-10">
+                    <input type="text" class="from" name="subject" id="subject">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-12">
+            <div class = "row">
+                <div class = "col-sm-2">
+                    <label>Critical Note:</label>
+                </div>
+                <div class ="col-sm-10">
+                    <input type="checkbox" id="critical_note">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-sm-12">
+            <div class = "row">
+                <div class = "col-sm-2">
+                    <label>Related To:</label>
+                </div>
+                <div class = "col-sm-1">
+                    <select name="relate_to" id="relate_to">
+                        <option value="">  </option>
+                        <option value="Accounts"> Facility </option>
+                        <option value="Jobs"> Job </option>
+                        <option value="HiringActivities"> Hiring Activities</option>
+                    </select>
+                </div>
+                <div class = "col-sm-4">
+                    <div class = "row">
+                        <div class = "col-sm-8">
+                            <input type="hidden" name="relate_id" field="relate_id" id="relate_id">
+                            <input type="text" name ="relate_name" field="relate_name" id="relate_name" style="width:100%">
+                        </div>
+                        <div class = "col-sm-1">
+                            <button class = "relate_fetch" type="Accounts" data-field="accounts_jobs"><img src="images/select.png"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-12">
+            <div class = "row">
+                <div class = "col-sm-2">
+                    <label>Notes: </label>
+                </div>
+                <div class ="col-sm-10" style="padding-left: 2px;">
+                    <textarea name="note" placeholder="NOTE: You can not enter '&' character into this Box. !!" id="note" rows="5" cols="100" style="margin-left: 13px;margin-top: 4px;"></textarea> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,113 @@
+<div class = search_form>
+    <div class = "row">
+        <div class = "col-sm-12">
+            <input type="radio" id="cancelContractor" name="radiobutton" value="Cancel Contractor">&nbsp;
+            <span class="radfont">Cancel Contractor</span>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>Notes:<label>
+                </div>
+                <div class = "col-sm-8">
+                    <textarea name="add_notes" id="add_notes_CC" rows="4" cols="20"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>Contractor To Fill:<span style="color:red">*</span></label>
+                </div>
+                <div class = "col-sm-8">
+                    <input type = "hidden" id =Contractor_to_fill_id value="">
+                    <input type="text" name="Contractor_to_fill" id="Contractor_to_fill" value="">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class = "row">
+        <div class = "col-sm-12">
+            <input type="radio" id="extendContract" name="radiobutton" value="Extend Contract">&nbsp;
+            <span class="radfont">Extend Contract</span>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>From Date:<span style="color: red">*</span><label>
+                </div>
+                <div class = "col-sm-8">
+                    <input type="text" id="contract_start_date" name="Contract Start Date" value="" class = "datepicker">
+                </div>
+            </div>
+        </div>
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>To Date:<span style="color: red">*</span></label>
+                </div>
+                <div class = "col-sm-8">
+                    <input type="text" id="contract_end_date" name="Contract end Date" value="" class ="datepicker">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>Notes:</label>
+                </div>
+                <div class = "col-sm-8">
+                    <textarea name="add_notes" id="add_notes_EC" rows="4" cols="20"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-sm-12">
+            <input type="radio" id="cutContractShort" name="radiobutton" value="Cut Contract Short">&nbsp;
+            <span class="radfont">Cut Contract Short</span>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>Contract end Date:<span style="color:red"></label>
+                </div>
+                <div class = "col-sm-8">
+                  <input type="text" id="contract_end_date1" name="Contract end Date" value="" class ="datepicker">
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-sm-6">
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <label>Notes:</label>
+                </div>
+                <div class = "col-sm-8">
+                    <textarea name="add_notes" id="add_notes_CCS" rows="4" cols="20"></textarea>
+                </div>
+
+            </div>
+        </div>
+    </div>
+         <div class = row>
+           <div class = "col-sm-6">
+               <div class = "col-sm-4">
+                   <input type="button" value="Submit" id="submit">
+               </div>
+           </div>
+     </div>
+</div>
