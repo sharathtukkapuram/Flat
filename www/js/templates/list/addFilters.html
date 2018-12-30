@@ -1,0 +1,98 @@
+<%
+switch (field.html_type) {
+            case "datetime":
+	    case "date":
+                %>
+                <div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='gte'>Greater than and Equal to</option>
+                        <option value='lt'>Less than</option>\n\
+                        <option value='lte'>Less than and Equal to</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'><input type="text" class="datepicker" id='value_<%= count %>' name='value_<%= count %>' /></div><%
+                break;
+            case "text":
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='contains'>Contains</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'><input type='text' id='value_<%= count %>' name='value_<%= count %>' /></div><%
+                break;
+            case "decimal":
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='contains'>Contains</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'><input type='text' id='value_<%= count %>' name='value_<%= count %>' /></div><%
+                break;
+                case "select":
+            case "multiselect":
+                var option = field['options'];
+                var options_value = language[option];
+
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Is Any of</option>
+                        <option value='e_not'>Is Not Any Of</option>
+                    </select>
+                </div>
+                <div class = 'col-sm-3'>
+                    <select name='value_<%= count %>'  id='value_<%= count %>' multiple>";
+                    <%
+                    for (var opt in options_value) {
+                    %><option value= '<%=opt%>'><%= options_value[opt] %></option><%
+                    }
+                    %></select></div><%
+                break;
+
+            case "textarea":
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='contains'>Contains</option>
+                    </select>
+                </div>
+                <div class = 'col-sm-3'><textarea rows='5' cols='30' name='value_<%= count %>'  id='value_<%= count %>' ></textarea></div><%
+                break;
+            case "checkbox":
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='contains'>Not Equal to</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'><input type='checkbox' id='value_<%= count %>' name='value_<%= count %>' /></div><%
+                break;
+
+            case "bool":
+                %><div class='col-sm-1'>Filter Type</div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='filter_type_<%= count %>'>
+                        <option value='e'>Equal to</option>
+                        <option value='contains'>Not Equal to</option>
+                    </select>
+                </div>
+                <div class='col-sm-3'>
+                    <select style='height:23px;' id='value_<%= count %>' name='value_<%= count %>'>
+                        <option value = selected></option>
+                        <option value =1>Yes</option>
+                        <option value =0>No</option>
+                    </select>
+                </div><%
+                break;
+
+        }
+        %>
+        <div class='col-sm-1'><button type ='button' class ='remove' data_id='remove_<%= count %>'>X</button></div>

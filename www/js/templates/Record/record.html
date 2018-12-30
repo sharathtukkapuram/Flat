@@ -1,0 +1,124 @@
+<div class="row editView <%= data.module %> record_<%= record_unique %>"><%
+    var language = data.get("language");
+    var view = data.get("meta_view").record;
+    var _fields = data.get("fields");
+    function getValue(field){
+        var value = "";
+        if(_fields[field]['html_type'] == "select" || _fields[field]['html_type'] == "multiselect"){
+            var opt = language[_fields[field]['options']];
+            if(!_.isEmpty(opt)){
+                if(typeof data.get(field) == "object"){
+                    var nameArr = [];
+                    _.each(data.get(field), function(eachVal, i){
+                        nameArr[i] = opt[eachVal];
+                    });
+                    value = nameArr.join("; ");
+                }else{
+                    value = opt[data.get(field)];
+                }
+            }
+        }else if(_fields[field]['html_type'] == "bool"){
+            if(data.get(field) == 1){
+                value = "Yes";
+            }else{
+                value = "No";
+            }
+        }else if(_fields[field]['html_type'] == "datetime"){
+         if(data.get(field) == "0000-00-00 00:00:00"){
+		     value = null;
+		 }else{
+		      value = data.get(field);
+		 }
+        }
+        else if(_fields[field]['html_type'] == "checkbox"){
+            if(data.get(field) == 1){
+                value = "checked";
+            }else{
+                value = "";
+            }
+            %><input type="checkbox" disabled="disabled" <%= value %>/><%
+            return;
+        }else if(_fields[field]['html_type'] == "relationship"){
+            if(_fields[field]['type']=="relate"){
+                %>
+                <span><a href="#<%= _fields[field]['relate_module'] %>/record/<%= data.get(field) %>"><%= data.get(field+'_name') %></a></span>
+                <%
+            }else{
+                %>
+                <span><a href="#<%= _fields[field]['relate_module'] %>/record/<%= data.get(field+'_id') %>"><%= data.get(field+'_name') %></a></span>
+                <%
+            }
+            return;
+        }else if(_fields[field]['html_type'] == "textarea"){
+            let desc = data.get(field);
+            if(!_.isEmpty(desc)){
+                value = desc.replace(/\n/g, "<br />");
+            }else{
+                value = "";
+            }
+        }else if(_fields[field]['html_type'] == "parent"){
+            %>
+            <span><a href="#<%= data.get(field+'_type') %>/record/<%= data.get(field+'_id') %>"><%= data.get(field+'_name') %></a></span>
+            <%
+        }else {
+            value=data.get(field);
+        }
+        %><span><%= value %></span> <%
+    }
+    _.each(view.panel, function(v, i){
+        %><div class="row"><div class="row panel panel-default" id="panel_<%= i %>"><div class="panel-heading"><%= language[i] %></div><div class="panel-body"> <%
+        _.each(v, function(fields){
+            %><div class="row edit-row"><%
+            _.each(fields, function(options, field){
+			 
+                %><div class="col-sm-6"><%
+                    %><div class="row fields"><%
+                        %><div class="col-sm-4"><%
+                            
+						if(fields[field]['required']){
+						   %><label><%= language[options.label]%><span style="color:red">*</span>:</label><%
+						}else if(_fields[field] != undefined && _fields[field]["required"] != undefined && _fields[field]["required"]){
+                           %><label><%= language[options.label]%><span style="color:red">*</span>:</label><%
+					     }
+						else{
+							if(field == "contract_status"){
+                                                        
+							}
+							 %><label><%= language[options.label]%>:</label><%
+						}
+                        %></div><%
+                       if(fields[field]['inline_edit']==false && fields[field]['inline_edit']!=undefined){
+                          var edit_inline = "";
+                       }
+                        else if(_fields[field] != undefined && _fields[field]['inline_edit'] != undefined && _fields[field]['inline_edit']==false){
+                          var edit_inline = "";
+                        }else{
+                        var edit_inline = "edit-inline";
+                        }
+                        if( _.isEmpty(options['merge_fields']) && _fields[field]['html_type'] == "textarea"){
+                        %><div class="col-sm-8 record-view-field <%= edit_inline %>" field="<%= field %>" style="overflow-y: auto; height: 150px;">
+                            <%
+                        }else{
+                        %><div class="col-sm-8 record-view-field <%= edit_inline %>" field="<%= field %>">
+                        <%}
+                            if(!_.isEmpty(options['merge_fields'])){
+                                _.each(fields[field]['merge_fields'], function(v){
+                                     getValue(v);
+                                });
+                            }else if(options.html_type != undefined && options.html_type == "parent"){
+                                     getValue(field+"_type");
+                                     getValue(field+"_name");
+                            }else{
+                                getValue(field);
+                            }
+                            
+                        %></div><%
+                    %></div><%
+                %></div><%
+            });
+            %></div><%
+        });
+        %></div></div></div><%
+    });
+    %>
+</div>

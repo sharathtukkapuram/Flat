@@ -1,0 +1,549 @@
+/*
+Copyright 2018 Sharath@veon.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/* 
+    Created on : Jan 25, 2018, 1:18:19 PM
+    Author     : Sharath@veon
+*/
+
+/*********************************************************************************
+ * SugarCRM Community Edition is a customer relationship management program developed by
+ * SugarCRM, Inc. Copyright (C) 2004-2013 SugarCRM Inc.
+ * 
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License version 3 as published by the
+ * Free Software Foundation with the addition of the following permission added
+ * to Section 15 as permitted in Section 7(a): FOR ANY PART OF THE COVERED WORK
+ * IN WHICH THE COPYRIGHT IS OWNED BY SUGARCRM, SUGARCRM DISCLAIMS THE WARRANTY
+ * OF NON INFRINGEMENT OF THIRD PARTY RIGHTS.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License along with
+ * this program; if not, see http://www.gnu.org/licenses or write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA.
+ * 
+ * You can contact SugarCRM, Inc. headquarters at 10050 North Wolfe Road,
+ * SW2-130, Cupertino, CA 95014, USA. or at email address contact@sugarcrm.com.
+ * 
+ * The interactive user interfaces in modified source and object code versions
+ * of this program must display Appropriate Legal Notices, as required under
+ * Section 5 of the GNU Affero General Public License version 3.
+ * 
+ * In accordance with Section 7(b) of the GNU Affero General Public License version 3,
+ * these Appropriate Legal Notices must retain the display of the "Powered by
+ * SugarCRM" logo. If the display of the logo is not reasonably feasible for
+ * technical reasons, the Appropriate Legal Notices must display the words
+ * "Powered by SugarCRM".
+ ********************************************************************************/
+body {
+    /*background-color: #005b67;*/
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+#company_Logo {
+    position: relative;
+    right: -30px;
+    top: 9px;
+}
+
+#login_button {
+    color: #fff;
+    background-color: rgb(190,215,57);
+    width: 220px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border:0px;
+}
+
+.heder {
+    /*background-color: #005b67;*/
+    height: 80px;
+    padding-bottom: 0px;
+}
+
+#globalLink {
+    position: relative;
+    right: 50px;
+    background-color: #005b67;
+}
+
+#empty_space {
+    background-color: #fff;
+    color: #fff;
+    height: 10px;
+    position: relative;
+    /* 	top: 11px; */
+    top: 3px\9;
+}
+
+.empty_space {
+    margin-left: 0;
+    margin-right: 0;
+    position: relative;
+    top: 9px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-top: thin double #bed739;
+}
+
+.buttonLogin {
+    border: 1px solid #444444;
+    font-size: 11px;
+    color: #ffffff;
+    background-color: #666666;
+    font-weight: bold;
+}
+
+table.tabForm td {
+    border: none;
+}
+
+p {
+    MARGIN-TOP: 0px;
+    MARGIN-BOTTOM: 10px;
+}
+
+form {
+    margin: 0px;
+}
+
+@media all {
+    #user_name {
+        border-color: #bcbfc3;
+        border-style: solid;
+        padding: 5px;
+        height:26px;
+        width:220px;
+        border-width: 1;
+    }
+    #user_password {
+        border-color: #bcbfc3;
+        border-style: solid;
+        padding: 4px;
+        height:26px;
+        width:220px;
+        border-width: 1;
+    }
+    input[type="text"], input[type="password"], textarea {
+        width: 180px;
+        font-size: 15px;
+    }
+}
+
+#recaptcha_image {
+    height: 47.5px !important;
+    width: 250px !important;
+}
+
+#recaptcha_image img {
+    height: 47.5px;
+    width: 250px;
+}
+
+#sign_in {
+    background-color: black;
+    height: 34px;
+    color: #bed739;
+    padding-left: 12px;
+    position: relative;
+    top: -4px;
+}
+
+#signin {
+    position: relative;
+    top: 6px;
+    left: -7px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#table_body {
+    background-color: white;
+}
+
+#company_pic {
+    height: 76px;
+    width:310px;
+    position: relative;
+    top: 1px;
+}
+
+.loginBox {
+    padding: 20px;
+}
+
+#error_login {
+    padding-left: 10px;
+    width: 88%;
+    margin-left: 7% !important;
+    margin-right: 7%;
+}
+
+.login table {
+
+}
+
+.loginBox td b, .loginBox td img {
+    display: none;
+}
+
+.password {
+    padding: 5px 20px 5px 21px;
+    /*border: 1px solid #999;*/
+    border-top: 0px none;
+    background-color: #fff;
+    /*width: 75.2%;*/
+    margin: -19px 20px 0 20px;
+    padding: 5px\9 20px\9 5px\9 17px\9;
+}
+
+.password .login_more div:first-child {
+    text-align: right;
+}
+
+.password a {
+    text-decoration: none;
+}
+
+.password a img {
+    margin-right: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+#forgot_password_dialog table {
+    margin-top: 10px;
+}
+
+#globalLinks {
+    padding-right: 55px;
+    font-weight: bold;
+    font-size: 12px;
+    vertical-align: middle;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    text-align: right;
+    top: -25px;
+    position: relative;
+    color: #005b67;
+}
+
+#employees_link_login {
+    color: #bed739;
+    cursor: pointer;
+}
+
+.dashletPanelMenu .bd .bd-center {
+    padding-top: 0px;
+}
+
+#employee_link_log {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    text-align: right;
+}
+/*html, body{
+min-height:100%;
+overflow:hidden;
+}*/
+div#content {
+    /*padding-top: 11px;*/
+    /*padding-left: 8px;*/
+    /*padding-bottom: 20px;*/
+    padding: 0 !important;
+    border: 0;
+    margin-left: 0;
+    /* margin-right: 5px; */
+}
+
+.leftTab {
+    width: 0%;
+}
+
+.rightTab {
+    width: 100%;
+}
+
+#loginPageImage {
+    /*background: #8ab9bc;*/
+    background: rgba(230,228,228,1);
+    /*padding: 5.1% 12%;
+padding:0\9;
+_padding:0;
+*padding:0;
+padding-left:13%\9;
+_padding-left:13%;
+*padding-left:13%;
+padding-top:2%\9;
+_padding-top:2%;
+*padding-top:2%;
+padding-bottom:2%\9;
+_padding-bottom:2%;
+*padding-bottom:2%;*/
+    padding: 0 13.6%;
+    padding: 0\9;
+    _padding: 0;
+    *padding: 0;
+    padding-left: 13% \9;
+    _padding-left: 13%;
+    *padding-left: 13%;
+    /*padding-top:2%\9;
+_padding-top:2%;
+*padding-top:2%;
+padding-bottom:2%\9;
+_padding-bottom:2%;
+*padding-bottom:2%;*/
+    /*width: 76.5%;*/
+    height: 100%;
+}
+
+#img_desk {
+    /*width:725px\9;*/
+    width: 96.3%;
+    _width: 69.3%;
+    *width: 69.3%;
+    height: 100%;
+    padding-bottom: 13%;
+}
+
+body {
+    overflow: -moz-scrollbars-vertical !important;
+}
+
+.log {
+    border-top: 17px solid #000000;
+}
+
+#loginContent {
+    /* margin: -1% 0% 0% -1%; */
+    /* 	border-top: 17px solid #000000; */
+    /* min-width: 85em; */
+    width: 100%;
+    height: 80%;
+}
+
+.error {
+    color: Red;
+    font-size: 12px;
+}
+
+
+/*@-moz-document url-prefix () { #loginContent {
+                                   width: 102%;
+                               }
+
+                               #loginPageImage {
+                                   padding: 3.4% 12%;
+                                   padding: 0 13.6%;
+                               }
+
+                               #img_desk {
+                                   width: 97%;
+                               }
+
+}*/
+.rightTab {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.box {
+
+    background-color: #ecebeb;
+    padding-top: 1%;
+    padding-bottom: 4%;
+    width: 240px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 1);
+    border: 1px solid #eaedf0;
+    border-radius: 11px;
+}
+
+#img_mob {
+    display: none;
+}
+
+@media only screen and (min-width : 240px) and (max-width : 960px) {
+    table#loginContent td {
+        display: block;
+        text-align: left !important;
+        padding-left: 12px;
+    }
+    #loginBox {
+        width: 100% !important;
+        height:100%;
+        padding-bottom: 20px;
+    }
+    #loginPageImage {
+        height: 305px;
+        padding: 0;
+    }
+    #img_desk {
+        display: none;
+    }
+    #img_mob {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        /* 	left: 15px; */
+    }
+    #login_button {
+
+    }
+    #log {
+        border-top: 17px solid #bed739;
+    }
+}
+
+@media only screen and (min-width : 240px) and (max-width : 350px) {
+    #loginBox {
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (min-width : 590px) and (max-width : 960px) {
+    #loginBox {
+        width: 230px;
+    }
+}
+
+@media only screen and (min-width : 380px) and (max-width : 450px) {
+    #loginBox {
+        width: 370px;
+    }
+}
+
+@media only screen and (min-width : 451px) and (max-width : 480px) {
+    #loginBox {
+        width: 440px;
+    }
+}
+
+@media only screen and (min-width : 481px) and (max-width : 519px) {
+    #loginBox {
+        width: 470px;
+    }
+}
+
+@media only screen and (min-width : 520px) and (max-width : 550px) {
+    #loginBox {
+        width: 500px;
+    }
+}
+
+@media only screen and (min-width : 551px) and (max-width : 589px) {
+    #loginBox {
+        width: 540px;
+    }
+}
+
+@media only screen and (min-width : 590px) and (max-width : 649px) {
+    #loginBox {
+        width: 580px;
+    }
+}
+
+@media only screen and (min-width : 650px) and (max-width : 694px) {
+    #loginBox {
+        width: 640px;
+    }
+}
+
+@media only screen and (min-width : 695px) and (max-width : 794px) {
+    #loginBox {
+        width: 680px;
+    }
+}
+
+@media only screen and (min-width : 795px) and (max-width : 850px) {
+    #loginBox {
+        width: 780px;
+    }
+}
+
+@media only screen and (min-width : 851px) and (max-width : 959px) {
+    #loginBox {
+        width: 840px;
+    }
+}
+
+@media only screen and (min-width : 960px) and (max-width : 1020px) {
+    #loginBox {
+        width: 600px;
+    }
+}
+
+@media only screen and (min-width : 1021px) and (max-width : 1090px) {
+    #loginBox {
+        width: 600px;
+    }
+}
+
+@media only screen and (min-width : 1091px) and (max-width : 1150px) {
+    #loginBox {
+        width: 600px;
+    }
+}
+
+@media only screen and (min-width : 1151px) and (max-width : 1199px) {
+    #loginBox {
+        width: 410px;
+    }
+}
+
+@media only screen and (min-width : 1200px) and (max-width : 1249px) {
+    #loginBox {
+        width: 460px;
+    }
+}
+
+@media only screen and (min-width : 1250px) and (max-width : 1280px) {
+    #loginBox {
+        width: 460px;
+    }
+}
+
+@media only screen and (min-width : 1279px) and (max-width : 1359px) {
+    #loginBox {
+        width: 510px;
+    }
+}
+
+@media only screen and (min-width : 1360px) and (max-width : 1500px) {
+    #loginBox {
+        width: 600px;
+    }
+}

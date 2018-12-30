@@ -1,0 +1,152 @@
+<link rel="stylesheet" type="text/css" href="css/sidebar.css" />
+<img style="float: left; display: none;" src="images/open_sidebar.png" width="25" id="open_sidebar">
+<div id="close_sidebar"> 
+    <img style="float: right;" src="images/close_sidebar.png" width="25" id="left_arrow">
+    <br>
+    <p></p>
+    <div align="right">
+        <p>Click X to hide tab</p>
+    </div>
+</div>
+<%
+var fieldData = fields;
+var langData = language;
+%>
+<div id="quick_search">
+    <form action="">
+        <div id="quick_search_form">
+            <div>
+                <input type="radio" name="quick_search_module" value="verified" checked=""> <span>Contacts</span>&nbsp;
+                <input type="radio" name="quick_search_module" value="nonVerified"> <span>Leads </span>&nbsp;
+                <input type="radio" name="quick_search_module" value="both"> <span>Both</span>
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        <span>Name</span>
+                    </td>
+                    <td>
+                        <input type="text" id="quick_search_name"  name="quick_search_name" field="full_name"  placeholder="First Name Or Last Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>State</span>
+                    </td>
+                    <td>
+                        <select id="quick_search_state" name="quick_search_state" field="primary_address_state">
+                            <%
+                            var opt = fieldData['primary_address_state']['options'];
+                            var options = langData[opt];
+                            for (var opt in options) {
+                            %><option value= '<%=opt %>'><%=options[opt] %></option><%
+                            }
+                            %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Discipline</span>
+                    </td>
+                    <td>
+                        <select id="quick_search_discipline" name="quick_search_discipline" field="discipline">
+                            <%
+                            var opt = fieldData['discipline']['options'];
+                            var options = langData[opt];
+                            %><option value=''></option><%
+                            for (var opt in options) {
+                            %><option value= '<%=opt %>'><%=options[opt] %></option><%
+                            }
+                            %>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Phone</span>
+                    </td>
+                    <td>
+                        <input type="text" id="quick_search_phone" name="quick_search_phone" field="phone_home">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Email</span>
+                    </td>
+                    <td>
+                        <input type="text" id="quick_search_email" name="quick_search_email" field="email">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Taleo ID</span>
+                    </td>
+                    <td>
+                        <input type="text" id="quick_search_taleo_id" name="quick_search_taleo_id" field="taleo_id">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="quick_search_type" value="exact" checked=""> <span>Exact</span>
+                    </td>
+                    <td>
+                        <input type="radio" name="quick_search_type" value="contains"> <span>Contains</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Search" id="qs_button" style="float: right;font-size: 12px;" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<div class="line"></div>
+<div id="bookamrk">
+    <div align="center">
+        <h4>Bookmarks:</h4>
+    </div>
+
+</div>
+<div class="line"></div>
+<div id="recent_activity">
+    <div align="center">
+        <h4>Recent Activity:</h4>
+    </div>
+
+</div>
+<div class="line"></div>
+<div id="shortcuts">
+    <div align="center">
+        <h4>SHORTCUTS:</h4>
+    </div>
+    <table>
+        <tr>
+            <td>
+                <a href = "#HiringActivity/q/To_Be_Evaluated"><span>To Be Evaluated</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href = "#HiringActivity/q/Referral"><span>Referrals</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href ="#HiringActivity/q/Interview"><span>Interviews</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href = "#HiringActivity/q/Offer"><span>Offers</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href = "#HiringActivity/q/Accepted"><span>Accepted</span></a>
+            </td>
+        </tr>
+    </table>
+</div>

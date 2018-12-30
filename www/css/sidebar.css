@@ -1,0 +1,109 @@
+/*
+Copyright 2018 Sharath@veon.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+/* 
+    Created on : Jan 25, 2018, 6:26:12 PM
+    Author     : Sharath@veon
+*/
+
+#sidebar{
+    width: 270px;
+    height: 100%;
+    overflow-x: hidden;
+    position: fixed;
+    overflow-y: auto;
+    background-color: #E6E4E4;
+    transition: 0.5s;
+}
+#close_sidebar div p{
+    font-size: 12px;
+    border-bottom: 1px #000 solid;
+    font-weight: bold;
+}
+#quick_search_form span{
+    font-weight: bold;
+    font-size: 11px;
+}
+#quick_search_form {
+    padding: 5px;
+}
+#quick_search_form input[type="text"]{
+    width:175px;
+    font-family: inherit;
+    padding: 2px;
+    font-weight: bold;
+    font-size: 12px;
+}
+#quick_search_form select{
+    width: 175px;
+}
+#quick_search_form ::-webkit-input-placeholder{
+    font-style: italic;
+}
+#quick_search_form td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+#left_arrow, #open_sidebar{
+    cursor: pointer;
+}
+#open_sidebar{
+    position: fixed;
+}
+
+@media only screen and (max-width: 570px)  {
+    #sidebar{
+        display: none;
+    }
+    .main{
+        margin-left: 10px;
+    }
+}
+
+/* Recent Activity*/
+#recent_activity h4{
+    font-weight: bold;
+}
+
+/*Shortcuts*/
+
+#shortcuts td{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+#bookamrk h4{
+    font-weight: bold;
+}
+#shortcuts h4{
+    font-weight: bold;
+}
+.recent_activity a, #bookamrk a{
+    font-size: 14px;
+    color: #000;
+}
+.recent_activity .row, #bookamrk .row{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#shortcuts a {
+    text-decoration: none;
+    color: #000000;
+}
+#shortcuts a:hover{
+    cursor: pointer;
+}
+

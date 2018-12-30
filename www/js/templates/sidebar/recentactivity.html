@@ -1,0 +1,10 @@
+
+<div class = "row recent_activity">
+    <%
+    _.each(data , function(i,j){
+    var src = "images/"+i.bean_module+".png";
+    %><div class = "row"><div class = "col-sm-12"><img class ='menu_img' src=<%=src%>><a href="#<%=i['bean_module']%>/record/<%=i['bean']%>"><%= i['name'] %></a></div></div><%
+    });
+    %>
+</div>
+
