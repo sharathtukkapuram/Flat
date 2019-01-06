@@ -1,0 +1,22 @@
+<p class="dashboard_header">Activity Stream</p>
+<div class="box">
+    <div class="box-content">
+        <%collection.forEach(function(model){
+            if(model.get('action') == undefined){
+                return;
+            }
+            console.log(model.toJSON());
+            switch(model.get('action')){
+                case "View":
+                %><div class="row activity_stream_row"><a target="_blank" href="#<%= model.get('bean_module') %>/record/<%= model.get('bean') %>"><%= model.get('name') %></a> has been viewed by <%= model.get('assigned_user_id_name') %> at <%= model.get('date_modified') %></div><%
+                    break;
+                case "Update":
+                %><div class="row activity_stream_row"><%= model.get('assigned_user_id_name') %> has updated a record <a href="#<%= model.get('bean_module') %>/record/<%= model.get('bean') %>" target="_blank"><%= model.get('name') %></a> at <%= model.get('date_modified') %></div><%
+                    break;
+                case "Create":
+                %><div class="row activity_stream_row"><%= model.get('assigned_user_id_name') %> has created a record <a href="#<%= model.get('bean_module') %>/record/<%= model.get('bean') %>" target="_blank"><%= model.get('name') %> at <%= model.get('date_modified') %></a></div><%
+                    break;
+            }
+        });%>
+    </div>
+</div>

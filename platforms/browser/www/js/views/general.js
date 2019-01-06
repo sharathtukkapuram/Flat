@@ -2,7 +2,7 @@ define(function (require) {
     return function () {
         this.utils = window.Veon;
         this.init = function (m, t, id) {
-            this.utils.is_authenticated();
+            // this.utils.is_authenticated();
             if (!_.isEmpty(this.utils[m])) {
                 this.utils[m].remove();
             }
@@ -15,9 +15,9 @@ define(function (require) {
                 this.utils[m] = new v();
             } else if (id != undefined) {
                 m = "record";
-                this.utils[m] = new v({id: id});
+                this.utils[m] = new v({ id: id });
             } else {
-                this.utils[m] = new v({initial_filter: t});
+                this.utils[m] = new v({ initial_filter: t });
             }
             this.utils.lastView = (m != "header" && m != "sidebar" && m != "record") ? m : this.utils.lastView;
             this.utils[m].render();
@@ -32,9 +32,9 @@ define(function (require) {
         this.getView = function (m, id) {
             let v;
             switch (m) {
-                // case "home":
-                //     v = require("views/home");
-                //     break;
+                case "home":
+                    v = require("views/home");
+                    break;
                 // case "header":
                 //     v = require("views/header");
                 //     break;

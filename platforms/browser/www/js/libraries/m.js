@@ -16,10 +16,39 @@ define(function (require) {
             }
             return "../backEnd/" + this.module + "/record/" + this.id;
         },
-//        save: function (attr, options) {
-//            this.trigger("save", this, options);
-//            return Backbone.Model.prototype.save.call(this, attr, options);
-//        },
+        altPostSave: function (data) {
+            var self = this;
+            if (data.success == undefined) {
+                throw "Require Success Method!!";
+            }
+            $.ajax({
+                url: this.url,
+                data: this.toJSON(),
+                type: 'POST',
+                success: function (response) {
+                    _.each(response, function (v, i) {
+                        i = i.toLowerCase();
+                        self.set(i, v);
+                    });
+                    data.success(self, data.self);
+                },
+                error: function (response) {
+                    if (data.error != undefined) {
+                        _.each(response, function (v, i) {
+                            // i = i.toLowerCase();
+                            self.set(i, v);
+                        });
+                        data.error(self, data.self);
+                    } else {
+                        console.error(response);
+                    }
+                }
+            });
+        },
+        //        save: function (attr, options) {
+        //            this.trigger("save", this, options);
+        //            return Backbone.Model.prototype.save.call(this, attr, options);
+        //        },
         fetch: function (options) {
             this.trigger('fetch', this, options);
             return Backbone.Model.prototype.fetch.call(this, options);

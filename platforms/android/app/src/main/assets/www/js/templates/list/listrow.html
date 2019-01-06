@@ -1,0 +1,100 @@
+
+	<% 
+	var start = count.start;
+	_.each(data, function(record){ %>
+	     
+        <tr>
+		<%
+		if(showCheckBox){
+		  %><td><input type="checkbox" value=<%=record['id']%> class="checkbox"></td><%
+		}
+		if(showRadioButtons){
+		  %><td><input type="radio" value=<%=record['id']%> name="relate_id" class="checkbox"></td><%
+		}
+		if(quickView){
+		  %><td><img class="quick_view" src="images/eyeImg.png" heigth="25px" width="25px" alt="Quick View"></td><%
+		}
+		%>
+
+        <% _.each(headers, function(header, key){ %>
+            <% 
+		     
+            if(header.show){ 
+                if(!_.isEmpty(header.merge_fields)){
+					var mergeVal = "";
+				     if(header.html_type =="address"){
+					 let mergeArr = [];
+					  _.each(header.merge_fields, function(val){
+					  
+                        if(!_.isEmpty(record[val])){
+                            mergeArr[mergeArr.length] = record[val];
+                        }
+                       });
+					   if(mergeArr.length > 0){
+							mergeVal = mergeArr.join(", <br>");
+					   }
+					 }else{
+					    _.each(header.merge_fields, function(val){
+                        if(!_.isEmpty(record[val])){
+                            mergeVal = mergeVal+" "+record[val];
+                        }
+                       });
+					 }
+                    if(header.link){
+                        %>
+                        <td style="width:<%= header.width %>"><a target="_blank" href="#<%=record['module']%>/record/<%=record['id']%>?sid=<%=sid%>&offset=<%= start%>"><%= mergeVal %></a></td>
+                        <%
+						start = start+1;
+                    }else{
+                    %>
+                        <td style="width:<%= header.width %>"><%= mergeVal %></td>
+                    <%}
+                }
+				else if(fields[key]['html_type'] == "multiselect" || fields[key]['html_type'] == "select"){
+				      var opt = "";
+					  opt = fields[key]['options'];
+					  
+					  %><td style="width:<%= header.width %>"><%= language[opt][record[key]] %></td><%
+
+				}else if(fields[key]['html_type'] == "datetime"){
+				   if(record[key] == "0000-00-00 00:00:00"){
+					  record[key] = null;
+					   %><td style="width:<%= header.width %>"><%= record[key] %></td><%
+				   }else{
+				        %><td style="width:<%= header.width %>"><%= record[key] %></td><%
+				   }
+				}else if(fields[key]["html_type"] == "relationship"){
+					if((fields[key]["type"])=="relate"){
+                                  
+						%><td style="width:<%= header.width %>"><a href="#<%=fields[key]["relate_module"]%>/record/<%=record[key]%>"><%= record[key+"_name"] %></a><%
+					}else if((fields[key]["type"])=="link"){
+                                  
+						%><td style="width:<%= header.width %>"><a href="#<%=fields[key]["relate_module"]%>/record/<%=record[key+"_id"]%>"><%= record[key+"_name"] %></a><%
+				   }
+				}
+				else{
+                    if(fields[key]["html_type"] == "checkbox" || fields[key]["html_type"] == "bool"){
+                        if(record[key] == 1){
+                            %><td style="width:<%= header.width %>"><input type="checkbox" disabled="disabled" checked="checked"></td><%
+                        }else{
+                            %><td style="width:<%= header.width %>"><input type="checkbox" disabled="disabled"></td><%
+                        }
+                    }
+					else{
+                        if(header.link){
+                        %>
+                          <td style="width:<%= header.width %>"><a target="_blank" href="#<%=record["module"]%>/record/<%=record["id"]%>?sid=<%=sid%>&offset=<%= start %>"><%= record[key] %></a></td>
+                        <%;
+						start = start+1;
+                        }else{
+                          %><td style="width:<%= header.width %>"><%= record[key] %></td><%
+						}
+                    }
+                }
+				
+				
+            } %>
+        <% }); %>
+		
+        </tr>
+    <% }); %>

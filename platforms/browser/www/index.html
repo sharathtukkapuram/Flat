@@ -12,6 +12,12 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <script src="js/libraries/jquery.min.js"></script>
     <title>Flat</title>
+    <script>
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            alert(msg + " - " + url + " - " + lineNo);
+            return false;
+        }
+    </script>
 </head>
 
 <body>

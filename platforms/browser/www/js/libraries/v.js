@@ -6,7 +6,9 @@
 define(function (require) {
     var Backbone = require('backbone');
     var _ = require('underscore');
+    var db = require('libraries/database');
     var view = Backbone.View.extend({
+        database: new db,
         initialize: function (options) {
             this.utils = window.Veon;
             if (!_.isEmpty(this.collection)) {
@@ -72,15 +74,15 @@ define(function (require) {
         alert: {
             init: function () {
                 var size = $(window).width() * 30 / 100;
-                $(".status").css({"padding-left": size, "padding-right": size});
+                $(".status").css({ "padding-left": size, "padding-right": size });
             },
             success: function (msg) {
                 this.init();
                 var successTpl = require("text!templates/success_alert.html");
                 window.Veon.loader.hide();
                 var etpl = _.template(successTpl);
-                var status = $(".status:eq(0)").clone().html(etpl({data: msg})).appendTo('body');
-                status.css({"top": $(window).scrollTop() + (50 * ($(".status").length))});
+                var status = $(".status:eq(0)").clone().html(etpl({ data: msg })).appendTo('body');
+                status.css({ "top": $(window).scrollTop() + (50 * ($(".status").length)) });
                 setTimeout(function () {
                     status.fadeOut(1000, function () {
                         $(this).remove().show();
@@ -92,9 +94,9 @@ define(function (require) {
                 var errorTpl = require("text!templates/errro_alert.html");
                 window.Veon.loader.hide();
                 var etpl = _.template(errorTpl);
-//                $(".status").html(etpl({data: msg}));
-                let status = $(".status:eq(0)").clone().html(etpl({data: msg})).appendTo('body');
-                status.css({"top": $(window).scrollTop() + (50 * ($(".status").length))});
+                //                $(".status").html(etpl({data: msg}));
+                let status = $(".status:eq(0)").clone().html(etpl({ data: msg })).appendTo('body');
+                status.css({ "top": $(window).scrollTop() + (50 * ($(".status").length)) });
             }
         },
         showErrors: function (obj, response, options) {
@@ -111,7 +113,7 @@ define(function (require) {
         },
         search: function () {
             if (!_.isEmpty(this.collection)) {
-                this.collection.fetch({data: this.filters, reset: true, type: 'POST'});
+                this.collection.fetch({ data: this.filters, reset: true, type: 'POST' });
             }
         },
         _bindChanges: function (e) {
@@ -141,9 +143,9 @@ define(function (require) {
         openSlider: function () {
             this.slider_unique = Math.floor(Math.random() * 1000);
             this.$el.append("<div class='slider_background sb_" + this.slider_unique + "'></div>");
-            this.$el.find('.slider_background').css({display: "block"});
+            this.$el.find('.slider_background').css({ display: "block" });
             this.$el.append("<div class='slide_down sd_" + this.slider_unique + "'><div class='slide_down_body sdb_" + this.slider_unique + "' id='relate_" + this.slider_unique + "' style='overflow:auto;'></div></div>");
-            this.$el.find(".sd_" + this.slider_unique).css({position: "fixed", top: "0", left: "0", 'z-index': "9999", width: "100%"});
+            this.$el.find(".sd_" + this.slider_unique).css({ position: "fixed", top: "0", left: "0", 'z-index': "9999", width: "100%" });
             this.$el.find(".sdb_" + this.slider_unique).animate({
                 "min-height": ((screen.height / 4) * 3) + "px",
                 "max-height": ((screen.height / 4) * 3) + "px",

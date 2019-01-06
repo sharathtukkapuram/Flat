@@ -1,0 +1,137 @@
+<%
+    switch(fieldDef['html_type']){
+   
+        case "text":
+		var lbl = language[fieldDef['label']];
+                if(merge_field){
+				  if(fieldDef['required']){
+				    %><span><%= lbl %></span><span style="color:red">*</span><br><input type="text" value="<%= value %>" field="<%= field %>"><br><%
+				  }else{
+				    %><span><%= lbl %></span><br><input type="text" value="<%= value %>" field="<%= field %>"><br><%
+				  }  
+                }else{
+                    %><input type="text" value="<%= value %>" field="<%= field %>"><%
+                }
+            break;
+        case "parent":
+            var lbl = language[fieldDef['label']];
+           %><select field="<%= field %>_type"  name="<%= field %>_type"><%
+                _.each(language[fieldDef['options']], function(v, i){
+                    if(model.get(field+'_type') == i){
+                        %><option value="<%= i %>" selected="selected"><%= v %></option><%
+                    }else{
+                        %><option value="<%= i %>" ><%= v %></option><%
+                    }
+                });
+            %></select>
+                <input type="hidden" name="<%= field %>_id" field="<%= field %>_id" value="<%= model.get(field+'_id') %>">
+                <input type="text" name ="<%= field %>_name" field="<%= field %>_name" style="width:100%" value="<%= model.get(field+'_name') %>">
+                <button class = "relate_fetch_parent" data-field="<%= field %>"><img src="images/select.png"></button>
+           <%
+            
+            break;
+        case "select":
+            var lbl = language[fieldDef['label']];
+            if(merge_field){
+                if(fieldDef['required']){
+                    %><span><%= lbl %></span><span style="color:red">*</span><br><%
+                }else{
+                    %><span><%= lbl %></span><br><%
+                }
+            }
+            %><select field="<%= field %>"  name="<%= field %>"><%
+                _.each(language[fieldDef['options']], function(v, i){
+                    if(value == i){
+                        %><option value="<%= i %>" selected="selected"><%= v %></option><%
+                    }else{
+                        %><option value="<%= i %>" ><%= v %></option><%
+                    }
+                });
+            %></select><%
+            if(merge_field){
+                %><br><%
+            }
+            break;
+        case "multiselect":
+            %><select field="<%= field %>" name="<%= field %>" multiple><%
+                _.each(language[fieldDef['options']], function(v, i){
+                    var status = true;
+                    _.each(value, function(eachVal){
+                        if(eachVal == i){
+                            status = false;
+                            %><option value="<%= i %>" selected="selected"><%= v %></option><%
+                        }
+                    });
+                    if(status){
+                        %><option value="<%= i %>"><%= v %></option><%
+                    }
+                });
+            %></select><%
+            if(merge_field){
+                %><br><%
+            }
+            break;
+        case "bool":
+            %><select field="<%= field %>"  name="<%= field %>"><%
+                if(value == 1){
+                    %><option value="1" selected="selected">Yes</option><option value="0">No</option><%
+                }else{
+                    %><option value="1">Yes</option><option selected="selected" value="0">No</option><%
+                }
+            %></select><%
+            if(merge_field){
+                %><br><%
+            }
+            break;
+        case "checkbox":
+            if(value == 1){
+                %><input type ="checkbox" checked="checked" field="<%= field %>"  name="<%= field %>"><%
+            }else{
+			    %><input type ="checkbox" field="<%= field %>"  name="<%= field %>"><%
+                
+            }
+            break;
+            if(merge_field){
+                %><br><%
+            }
+        case "datetime":
+		case "date":
+		     %><input type="text" class="datepicker" field_type="datetime" value= "<%= value %>" name="<%= field %>" field="<%=field%>"><%
+                     if(merge_field){
+                %><br><%
+            }
+            break;
+	    case "relationship":
+		    if(fieldDef['type'] == "link"){
+                        %> <div class = "row relationship">
+				<div class="col-sm-8">
+					<input type="text"  width="95%"  value="<%= model.get(field+'_name') %>" field="<%= field %>_name">
+					<input type="hidden"  width="95%"  value="<%= model.get(field+'_id') %>" field="<%= field %>_id">
+				</div>
+				<div class="col-sm-4">
+                                    <button class = "relate_fetch" module_type="<%= fieldDef['relate_module'] %>" data-field="<%= field %>"><img src="images/select.png"></button>&nbsp<button class ="cancel"><img src="images/clear.png"></button>
+				</div>
+			</div><%
+                    }else{%>
+                        <div class = "row relationship">
+				<div class="col-sm-8">
+					<input type="text"  width="95%"  value="<%= model.get(field+'_name') %>" field="<%= field %>_name">
+					<input type="hidden"  width="95%"  value="<%= model.get(field) %>" field="<%= field %>">
+				</div>
+				<div class="col-sm-4">
+                                    <button class = "relate_fetch" module_type="<%= fieldDef['relate_module'] %>" data-field="<%= field %>"><img src="images/select.png"></button>&nbsp<button class ="cancel"><img src="images/clear.png"></button>
+				</div>
+			</div>
+                    <%}
+                    if(merge_field){
+                %><br><%
+            }
+		    break;
+		case "textarea":
+			 %><textarea rows ="<%= fieldDef['rows'] %>" cols ="<%= fieldDef['cols'] %>" field= "<%= field %>" name="<%=field %>"><%= value %></textarea><%
+                         if(merge_field){
+                %><br><%
+            }
+		    
+    }
+%> 

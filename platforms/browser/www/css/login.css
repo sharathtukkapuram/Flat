@@ -135,7 +135,7 @@ form {
         width:220px;
         border-width: 1;
     }
-    #user_password {
+    #password {
         border-color: #bcbfc3;
         border-style: solid;
         padding: 4px;

@@ -8,7 +8,7 @@ var Veon = {
     setMain: function (d) {
         this.main = d;
     },
-    url: "http://localhost/test/",
+    api_url: "http://testapp.flagjharkhand.com/api/index.php/",
     cookie: {
         get: function (key) {
             var name = key + "=";
@@ -31,22 +31,6 @@ var Veon = {
             var expires = "expires=" + d.toUTCString();
             document.cookie = key + "=" + value + ";" + expires + ";path=/";
         }
-    },
-    getServerTime: function () {
-        var time = "";
-        $.ajax({
-            url: "../backEnd/login/time",
-            type: 'GET',
-            cache: false,
-            async: false,
-            error: function (msg, res) {
-                console.error(res);
-            },
-            success: function (msg) {
-                time = new Date(msg.date);
-            }
-        });
-        return time;
     },
     url: {
         get: function (param) {

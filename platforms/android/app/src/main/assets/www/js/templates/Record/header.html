@@ -1,0 +1,28 @@
+<div class = "row">
+    <ul class="menu_links">
+        <%
+         _.each(menu,function(i,j){
+             %><li><span>| &nbsp;<a href="<%=i.link%>"><%=i.label%></a></span></li><%
+         });
+        %>
+    </ul>
+</div>
+<div class='row'>
+    <ul class="breadcrumb">
+        <li>Home</li>
+        <li><%= data.get("module") %></li>
+        <li>Record</li>
+    </ul>
+</div>
+
+<div class="row edit-header <%= data.module %>">
+    <%
+    if(!_.isEmpty(data.get('name'))){
+    %><div class="col-sm-6"><%= data.get('name') %>&nbsp;&nbsp;<img id='favorite' data-status='none' src='images/star.png'/></div><%
+        $('title').html(data.get('name'));
+    }else{
+        %><div class="col-sm-6"><%= data.get('first_name') %> <%= data.get('last_name') %>&nbsp;&nbsp;<img id='favorite' data-status='none' src='images/star.png'/></div><%
+        $('title').html(data.get('first_name')+" "+data.get('last_name') );
+    }
+    %>
+</div>

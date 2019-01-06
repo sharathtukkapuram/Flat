@@ -1,0 +1,19 @@
+<div class="row relate header">
+    <div class="col-sm-10">
+        <div class='row'>
+            <div class="col-sm-12">
+                <%
+                let language = model.get('language');
+                var header = language["LBL_MODULE_"+module.toUpperCase()];
+                %><div class="header_name">Create <%= header %></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="row" style='float: right;'>
+            <div class="col-sm-6"><button class='btn save_relate'>Save</button></div>
+            <div class="col-sm-6"><button class='btn cancel_relate'>Cancel</button></div>
+        </div>
+    </div>
+</div>
+<br>
