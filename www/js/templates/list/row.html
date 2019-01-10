@@ -1,0 +1,17 @@
+<%
+    _.each(rows, function(row){
+        %>
+<tr>
+    <%
+        _.each(headers, function(val,i){
+                %>
+    <td>
+        <%= row[i] %>
+    </td>
+        <%
+        });
+        %>
+</tr>
+<%
+    });
+%>

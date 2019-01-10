@@ -9,6 +9,9 @@ var Veon = {
         this.main = d;
     },
     api_url: "http://testapp.flagjharkhand.com/api/index.php/",
+    checkInternet: function(data){
+        data.success(true);
+    },
     cookie: {
         get: function (key) {
             var name = key + "=";

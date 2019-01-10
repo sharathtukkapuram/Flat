@@ -22,9 +22,9 @@ define(function (require) {
             this.utils.lastView = (m != "header" && m != "sidebar" && m != "record") ? m : this.utils.lastView;
             this.utils[m].render();
             this.utils[m].animate();
-            // if (_.isEmpty($(".main_header").html())) {
-            //     this.init("header");
-            // }
+            if (_.isEmpty($(".main_header").html())) {
+                this.init("header");
+            }
             // if (_.isEmpty($("#sidebar").html())) {
             //     this.init("sidebar");
             // }
@@ -35,19 +35,19 @@ define(function (require) {
                 case "home":
                     v = require("views/home");
                     break;
-                // case "header":
-                //     v = require("views/header");
-                //     break;
+                case "header":
+                    v = require("views/header");
+                    break;
                 // case "sidebar":
                 //     v = require("views/sidebar");
                 //     break;
-                // case "Contacts":
-                //     if (id == undefined) {
-                //         v = require("views/Contacts");
-                //     } else {
-                //         v = require("views/Record/Contacts");
-                //     }
-                //     break;
+                case "Meetings":
+                    if (id == undefined) {
+                        v = require("views/meetings");
+                    } else {
+                        // v = require("views/Record/Meetings");
+                    }
+                    break;
                 // case "Jobs":
                 //     if (id == undefined) {
                 //         v = require("views/Jobs");
@@ -55,13 +55,13 @@ define(function (require) {
                 //         v = require("views/Record/Jobs");
                 //     }
                 //     break;
-                case "Accounts":
-                    if (id == undefined) {
-                        v = require("views/Accounts");
-                    } else {
-                        // v = require("views/Record/Accounts");
-                    }
-                    break;
+                // case "Accounts":
+                //     if (id == undefined) {
+                //         v = require("views/Accounts");
+                //     } else {
+                //         // v = require("views/Record/Accounts");
+                //     }
+                //     break;
                 // case "Calls":
                 //     if (id == undefined) {
                 //         v = require("views/Calls");

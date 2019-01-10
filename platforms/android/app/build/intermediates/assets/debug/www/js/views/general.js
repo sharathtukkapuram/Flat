@@ -22,9 +22,9 @@ define(function (require) {
             this.utils.lastView = (m != "header" && m != "sidebar" && m != "record") ? m : this.utils.lastView;
             this.utils[m].render();
             this.utils[m].animate();
-            // if (_.isEmpty($(".main_header").html())) {
-            //     this.init("header");
-            // }
+            if (_.isEmpty($(".main_header").html())) {
+                this.init("header");
+            }
             // if (_.isEmpty($("#sidebar").html())) {
             //     this.init("sidebar");
             // }
@@ -32,12 +32,12 @@ define(function (require) {
         this.getView = function (m, id) {
             let v;
             switch (m) {
-                // case "home":
-                //     v = require("views/home");
-                //     break;
-                // case "header":
-                //     v = require("views/header");
-                //     break;
+                case "home":
+                    v = require("views/home");
+                    break;
+                case "header":
+                    v = require("views/header");
+                    break;
                 // case "sidebar":
                 //     v = require("views/sidebar");
                 //     break;
@@ -55,13 +55,13 @@ define(function (require) {
                 //         v = require("views/Record/Jobs");
                 //     }
                 //     break;
-                case "Accounts":
-                    if (id == undefined) {
-                        v = require("views/Accounts");
-                    } else {
-                        // v = require("views/Record/Accounts");
-                    }
-                    break;
+                // case "Accounts":
+                //     if (id == undefined) {
+                //         v = require("views/Accounts");
+                //     } else {
+                //         // v = require("views/Record/Accounts");
+                //     }
+                //     break;
                 // case "Calls":
                 //     if (id == undefined) {
                 //         v = require("views/Calls");

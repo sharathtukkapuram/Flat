@@ -101,6 +101,7 @@ define(function (require) {
         },
         showErrors: function (obj, response, options) {
             window.Veon.loader.hide();
+            alert(JSON.stringify(response));
             console.error(response);
         },
         originalEvents: {

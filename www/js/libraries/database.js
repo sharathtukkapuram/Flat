@@ -91,14 +91,18 @@ define(function (require) {
                         }
                     });
                     d[d.length] = ['INSERT INTO ' + table + '(' + valFields.join(",") + ') VALUES (' + valQues.join(", ") + ')', values];
+                    valQues = [];
+                    valFields = [];
+                    values = [];
                 });
-                this.db.sqlBatch(d
-                    , function () {
-                        console.log("inserted succesfully");
-                        success(true);
-                    }, function (error) {
-                        console.log('SQL batch ERROR: ' + error.message);
-                    });
+                // this.alert(d);
+                this.db.sqlBatch(d, function () {
+                    console.log("inserted succesfully");
+                    success(true);
+                    // alert('inserted pol');
+                }, function (error) {
+                    console.log('SQL batch ERROR: ' + error.message);
+                });
             } else {
                 throw 'Invalid Argument';
             }
@@ -118,13 +122,13 @@ define(function (require) {
                     query = query + ' ' + cond;
                 });
             }
+            // this.alert(query);
             this.db.executeSql(query, this.whereValues, function (rs) {
                 success(rs);
-                self.reset_query();
             }, function (error) {
                 console.error('SELECT SQL statement ERROR: ' + error.message);
             });
-
+            self.reset_query();
         }
     };
     return database;

@@ -18,8 +18,6 @@ define(function (require) {
         success: function (model, self) {
             model.unset('user_name');
             model.unset('password');
-            console.log('success', model);
-
             if (model.get('id') != "") {
                 self.database.select(['id', 'description', 'login_status']);
                 self.database.table('user');
@@ -30,17 +28,15 @@ define(function (require) {
                             self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
                                 self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
                                     console.log('insert', res);
-                                }, true);
-                            });
-                            self.database.createTable('home', ['id', 'description'], function (res) {
+                                });
                             }, true);
                         }
                     } else {
                         self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
                             self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
                                 console.log('insert', res);
-                            }, true);
-                        });
+                            });
+                        }, true);
                     }
                 });
                 window.Veon.user = model.toJSON();
@@ -65,7 +61,6 @@ define(function (require) {
             this.database.execute(function (res) {
                 if (res.rows.length > 0) {
                     let row = res.rows.item(0);
-                    alert(row.description);
                     let data = JSON.parse(row.description);
                     _.each(data, function (v, i) {
                         self.model.set(i, v);
