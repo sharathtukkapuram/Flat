@@ -377,6 +377,14 @@ module.exports = [
     "clobbers": [
       "SQLitePlugin"
     ]
+  },
+  {
+    "id": "cordova-plugin-x-toast.Toast",
+    "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+    "pluginId": "cordova-plugin-x-toast",
+    "clobbers": [
+      "window.plugins.toast"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -394,7 +402,8 @@ module.exports.metadata =
   "cordova-plugin-network-information": "1.3.4",
   "cordova-plugin-vibration": "2.1.6",
   "cordova-sqlite-ext": "2.3.0",
-  "cordova-plugin-whitelist": "1.3.3"
+  "cordova-plugin-whitelist": "1.3.3",
+  "cordova-plugin-x-toast": "2.7.2"
 };
 // BOTTOM OF METADATA
 });

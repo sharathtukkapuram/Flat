@@ -45,7 +45,7 @@ define(function (require) {
                     if (id == undefined) {
                         v = require("views/meetings");
                     } else {
-                        // v = require("views/Record/Meetings");
+                        v = require("views/meetingRecord");
                     }
                     break;
                 // case "Jobs":

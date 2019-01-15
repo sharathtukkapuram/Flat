@@ -16,7 +16,7 @@ define(function (require) {
             "click #refresh": "refresh"
         },
         meetings: function () {
-            alert("meeting");
+            this.utils.router.app_router.navigate('Meetings', { trigger: true });
         },
         sahiya: function () {
             alert("sahiya");
@@ -33,7 +33,7 @@ define(function (require) {
             if (data.dropTable) {
                 self.database.createTable("home", ["id", "data", "name"], function (res) { }, true);
             } else {
-                self.database.createTable("home", ["id", "data", "name"], function () { }, flase);
+                self.database.createTable("home", ["id", "data", "name"], function () { }, false);
             }
             self.database.insertData(this.collection.toJSON(), 'home', function (res) {
                 console.log('insert - ');
@@ -43,8 +43,8 @@ define(function (require) {
         loadDashboard: function () {
             let len = this.collection.length;
             if (len > 0) {
-                // var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr><div class='row'><div class='col-sm-12'><h3><strong>" + this.utils.user.dashboard_title + "</strong><h3></div></div>";
-                var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong> Hellloooo</strong><h3></div></div>";
+                var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong>" + this.utils.user.dashboard_title + "</strong><h3></div></div>";
+                // var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong> Hellloooo</strong><h3></div></div>";
                 for (i = 0; i < len; i++) {
                     if (i % 2 == 0) {
                         html = html + "<div class='row'>";
@@ -73,15 +73,14 @@ define(function (require) {
             this.utils.loader.show();
             this.utils.checkInternet({
                 success: function (res) {
-                    self.utils.loader.hide();
                     if (res) {
                         // get data froom server and dump to database
                         self.utils.loader.show();
                         self.collection.fetch({
                             type: "POST",
                             data: {
-                                // userid: self.utils.user.id
-                                userid: 1
+                                userid: self.utils.user.id
+                                // userid: 1
                             },
                             success: function (coll) {
                                 self.utils.loader.hide();
@@ -107,6 +106,7 @@ define(function (require) {
                             self.loadDashboard();
                         });
                     }
+                    self.utils.loader.hide();
                 }
             });
         }

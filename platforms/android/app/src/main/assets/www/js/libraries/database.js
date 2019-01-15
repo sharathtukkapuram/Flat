@@ -73,6 +73,35 @@ define(function (require) {
             }
 
         }
+        this.updateData = function (data, table, where, success) {
+            if (data.constructor === Array) {
+                throw "invalid argument";
+            }
+            var sql = "Update " + table + " SET ";
+            var whereValues = [];
+            var whereCond = [];
+            var update = [];
+            var self = this;
+            _.each(data, function (v, i) {
+                if (window.Veon.object_key_exists(where, i)) {
+                    return;
+                }
+                update[update.length] = i + "=?";
+                whereValues[whereValues.length] = v;
+            });
+            sql = sql + update.join(', ') + " WHERE ";
+            _.each(where, function (v, i) {
+                whereValues[whereValues.length] = v;
+                whereCond[whereCond.length] = i + "=?";
+            });
+            sql = sql + whereCond.join(' AND ');
+            this.db.executeSql(sql, whereValues, function (rs) {
+                console.log("updated");
+                success(rs);
+            }, function (error) {
+                console.error('Update SQL statement ERROR: ' + error.message);
+            });
+        };
         this.insertData = function (data, table, success) {
             if (data.constructor === Array) {
                 var self = this;
@@ -84,7 +113,7 @@ define(function (require) {
                     _.each(v, function (val, field) {
                         valQues[valQues.length] = '?';
                         valFields[valFields.length] = field;
-                        if (val.constructor === Array || typeof val === 'object') {
+                        if (val != null && (val.constructor === Array || typeof val === 'object')) {
                             values[values.length] = JSON.stringify(val);
                         } else {
                             values[values.length] = val;

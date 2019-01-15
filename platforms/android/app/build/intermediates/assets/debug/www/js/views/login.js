@@ -47,7 +47,7 @@ define(function (require) {
         },
         login: function () {
             this.model.set('id', 'login');
-            this.model.url = this.utils.api_url + "mauth/authenticate";
+            this.model.endPoint = "mauth/authenticate";
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
@@ -74,7 +74,6 @@ define(function (require) {
             });
             let window_height = ($(window).height() - $('#loginForm').height()) / 3;
             this.$el.find('.login_div').css({ "margin-top": window_height });
-
         }
     });
     return login;

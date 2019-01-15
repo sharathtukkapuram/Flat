@@ -41,13 +41,13 @@ define(function (require) {
                 // case "sidebar":
                 //     v = require("views/sidebar");
                 //     break;
-                // case "Contacts":
-                //     if (id == undefined) {
-                //         v = require("views/Contacts");
-                //     } else {
-                //         v = require("views/Record/Contacts");
-                //     }
-                //     break;
+                case "Meetings":
+                    if (id == undefined) {
+                        v = require("views/meetings");
+                    } else {
+                        v = require("views/meetingRecord");
+                    }
+                    break;
                 // case "Jobs":
                 //     if (id == undefined) {
                 //         v = require("views/Jobs");

@@ -8,39 +8,43 @@ define(function (require) {
     var Backbone = require('backbone');
     require('backbone_upload');
     let c = Backbone.Model.extend({
-        module: "",
         endPoint: "",
         url: function () {
-            if (this.endPoint != "") {
-                return "../backEnd/" + this.module + "/" + this.endPoint;
-            }
-            return "../backEnd/" + this.module + "/record/" + this.id;
+            return window.Veon.api_url + this.endPoint;
         },
         altPostSave: function (data) {
             var self = this;
             if (data.success == undefined) {
                 throw "Require Success Method!!";
             }
+            var postData;
+            if (data.data == undefined) {
+                postData = this.toJSON();
+            } else {
+                postData = data.data;
+            }
             $.ajax({
-                url: this.url,
-                data: this.toJSON(),
+                url: this.url(),
+                data: postData,
                 type: 'POST',
                 success: function (response) {
+                    window.Veon.loader.hide();
                     _.each(response, function (v, i) {
-                        i = i.toLowerCase();
                         self.set(i, v);
                     });
-                    data.success(self, data.self);
+                    data.success(self, data.self, response);
                 },
                 error: function (response) {
+                    window.Veon.loader.hide();
                     if (data.error != undefined) {
                         _.each(response, function (v, i) {
-                            // i = i.toLowerCase();
                             self.set(i, v);
                         });
-                        data.error(self, data.self);
+                        data.error(self, data.self, response);
                     } else {
-                        console.error(response);
+                        alert("Error -" + JSON.stringify(response));
+                        console.log("Error -" + JSON.stringify(response));
+                        console.log(response);
                     }
                 }
             });
@@ -57,70 +61,6 @@ define(function (require) {
             this.serverObj = res;
             return res;
         },
-        validate: function (attributes, option) {
-            let fields = this.get("fields");
-            var meta_view = this.get("meta_view");
-            var ret = [];
-            var self = this;
-            if (!_.isEmpty(fields)) {
-                _.each(fields, function (field, name) {
-                    if (field.required != undefined && field.required) {
-                        if (_.isEmpty(attributes[name]) && attributes[name] != undefined) {
-                            ret[ret.length] = {
-                                "field": name,
-                                "label": self.get("language")[field.label],
-                                "message": "Please Fill in required field"
-                            }
-                        }
-                    }
-                });
-            }
-            if (!_.isEmpty(meta_view)) {
-                _.each(meta_view.record.panel, function (i, j) {
-                    _.each(i, function (field, m) {
-                        _.each(field, function (p, q) {
-                            if (!_.isEmpty(p.merge_fields)) {
-                                return;
-                            }
-                            if (p.required != undefined && p.required == true) {
-                                let name = q;
-                                let link_name = "";
-                                if (!_.isEmpty(fields[q])) {
-                                    if (fields[q]['type'] == "link") {
-                                        link_name = name + "_name";
-                                        name = name + "_id";
-                                    }
-                                }
-                                if (_.isEmpty(attributes[name]) && attributes[name] != undefined) {
-                                    ret[ret.length] = {
-                                        "field": (link_name == "") ? name : link_name,
-                                        "label": self.get("language")[p.label],
-                                        "message": "Please Fill in required field"
-                                    }
-                                }
-                            }
-                        });
-                    });
-                });
-            }
-            let extraValidations = this.additionalValidation();
-            if (extraValidations != undefined && extraValidations.length > 0) {
-                _.each(extraValidations, function (v, i) {
-                    ret[ret.length] = v;
-                });
-            }
-            if (ret.length > 0) {
-                return ret;
-            }
-        },
-        additionalValidation: function () {
-            /**
-             * ret[] = {
-             *  field:"",
-             *  "message":
-             * }
-             */
-        }
     });
     return c;
 });

@@ -1,0 +1,71 @@
+<div class="row meeting">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                <strong>
+                    <%= model.get('eventname') %>
+                </strong>
+            </h3>
+        </div>
+    </div>
+    <hr class='hr_line'>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Sahiya Name</label>
+            <input type="text" value="<%= model.get('factName') %>" disabled=true />
+        </div>
+        <div class="col-sm-6">
+            <label>Unit</label>
+            <input type="text" value="<%= model.get('unitName') %>" disabled=true />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Scheduled Date</label>
+            <input type="text" value="<%= model.get('scheduled_date') %>" disabled=true />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>ST</label>
+            <input type="number" id='st' value="<%= model.get('st') %>" />
+        </div>
+        <div class="col-sm-6">
+            <label>SC</label>
+            <input type="number" id='sc' value="<%= model.get('sc') %>" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Others</label>
+            <input type="number" id='others' value="<%= model.get('others') %>" />
+        </div>
+        <div class="col-sm-6">
+            <label>Women</label>
+            <input type="number" id='women' value="<%= model.get('women') %>" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Under 15</label>
+            <input type="number" id='under15' value="<%= model.get('under15') %>" />
+        </div>
+        <div class="col-sm-6">
+            <label>men</label>
+            <input type="number" id='men' value="<%= model.get('men') %>" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Pregnant Women</label>
+            <input type="number" id='pregnant_women' value="<%= model.get('pregnant_women') %>" />
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <button id="save" class="btn btn-success">Update</button>
+        </div>
+    </div>
+    <br>
+</div>

@@ -77,26 +77,32 @@ define(function (require) {
                 $(".status").css({ "padding-left": size, "padding-right": size });
             },
             success: function (msg) {
-                this.init();
-                var successTpl = require("text!templates/success_alert.html");
-                window.Veon.loader.hide();
-                var etpl = _.template(successTpl);
-                var status = $(".status:eq(0)").clone().html(etpl({ data: msg })).appendTo('body');
-                status.css({ "top": $(window).scrollTop() + (50 * ($(".status").length)) });
-                setTimeout(function () {
-                    status.fadeOut(1000, function () {
-                        $(this).remove().show();
-                    });
-                }, 5000);
+                window.plugins.toast.showWithOptions({
+                    message: msg,
+                    duration: 5000, // 2000 ms
+                    position: "bottom",
+                    addPixelsY: -40,
+                    styling: {
+                        opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                        backgroundColor: '#0e960e', // make sure you use #RRGGBB. Default #333333
+                        textColor: '#FFFFFF', // Ditto. Default #FFFFFF
+                        textSize: 20.5, // Default is approx. 13
+                    }
+                });
             },
             error: function (msg) {
-                this.init();
-                var errorTpl = require("text!templates/errro_alert.html");
-                window.Veon.loader.hide();
-                var etpl = _.template(errorTpl);
-                //                $(".status").html(etpl({data: msg}));
-                let status = $(".status:eq(0)").clone().html(etpl({ data: msg })).appendTo('body');
-                status.css({ "top": $(window).scrollTop() + (50 * ($(".status").length)) });
+                window.plugins.toast.showWithOptions({
+                    message: msg,
+                    duration: 5000, // 2000 ms
+                    position: "bottom",
+                    addPixelsY: -40,
+                    styling: {
+                        opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                        backgroundColor: '#dc3545', // make sure you use #RRGGBB. Default #333333
+                        textColor: '#FFFFFF', // Ditto. Default #FFFFFF
+                        textSize: 20.5, // Default is approx. 13
+                    }
+                });
             }
         },
         showErrors: function (obj, response, options) {

@@ -1,14 +1,14 @@
 <%
     _.each(rows, function(row){
         %>
-<tr>
+<tr class="table_row" id="<% if(row.id != undefined){%><%= row.id %><%} %>">
     <%
         _.each(headers, function(val,i){
                 %>
     <td>
         <%= row[i] %>
     </td>
-        <%
+    <%
         });
         %>
 </tr>

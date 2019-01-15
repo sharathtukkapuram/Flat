@@ -31,6 +31,7 @@ define(function (require) {
             this.collection.fetch({
                 type: "POST", data: this.filter,
                 success: function (coll) {
+                    self.utils.loader.hide();
                     self.render();
                 }
             });
@@ -50,7 +51,10 @@ define(function (require) {
             });
         },
         loadHeaders: true,
+        beforeRender: function(){},
+        afterRender: function(){},
         render: function () {
+            this.beforeRender();
             if (this.collection.length > 0) {
                 if (this.loadHeaders) {
                     if (!_.isEmpty(this.title)) {
@@ -65,6 +69,8 @@ define(function (require) {
             } else {
                 this.$el.html('No records found!!');
             }
+            this.afterRender();
+            this.utils.loader.hide();
         }
     });
     return list;

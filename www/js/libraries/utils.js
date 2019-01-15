@@ -9,8 +9,13 @@ var Veon = {
         this.main = d;
     },
     api_url: "http://testapp.flagjharkhand.com/api/index.php/",
-    checkInternet: function(data){
-        data.success(true);
+    checkInternet: function (data) {
+        if (navigator.connection.type !== Connection.NONE) {
+            data.success(true);
+        } else {
+            data.success(false);
+        }
+
     },
     cookie: {
         get: function (key) {
@@ -61,26 +66,26 @@ var Veon = {
     loader: {
         loader_count: 0,
         show: function () {
-            $('#loader_background').css({height: $(document).height()});
-            $("#loader_background").css({display: "block"});
+            $('#loader_background').css({ height: $(document).height() });
+            $("#loader_background").css({ display: "block" });
             this.loader_count = this.loader_count + 1;
         },
         hide: function () {
             this.loader_count = this.loader_count - 1;
             if (this.loader_count < 1) {
-                $('#loader_background').css({height: $(document).height()});
-                $("#loader_background").css({display: "none"});
+                $('#loader_background').css({ height: $(document).height() });
+                $("#loader_background").css({ display: "none" });
             }
         }
     },
     onScroll: function () {
         var scrollTopPos = $(window).scrollTop();
         var windowHeight = $(window).height();
-        $('#loader').css({top: scrollTopPos + (windowHeight / 2)});
+        $('#loader').css({ top: scrollTopPos + (windowHeight / 2) });
 
         $.each($(".status"), function (i, v) {
             let x = i + 1;
-            $(v).css({top: $(window).scrollTop() + (50 * x)});
+            $(v).css({ top: $(window).scrollTop() + (50 * x) });
         });
     },
     onlyUnique: function (value, index, self) {
@@ -115,6 +120,6 @@ $(document).ready(function () {
         if (top == undefined || top == null || top == "") {
             top = 0
         }
-        $(v).css({top: top + $(window).scrollTop() + 50});
+        $(v).css({ top: top + $(window).scrollTop() + 50 });
     });
 });
