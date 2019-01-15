@@ -1,0 +1,70 @@
+<div class="row meeting">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                <strong>
+                    <%= model.get('name') %>
+                </strong>
+            </h3>
+        </div>
+    </div>
+    <hr class='hr_line'>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Sahiya Name</label>
+            <input type="text" value="<%= model.get('name') %>" id="name" />
+        </div>
+        <div class="col-sm-6">
+            <label>Sahiya Code</label>
+            <input type="text" value="<%= model.get('id') %>" disabled=true />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Unit</label>
+            <input type="text" value="<%= model.get('unitname') %>" disabled=true />
+        </div>
+        <div class="col-sm-6">
+            <label>Health Center</label>
+            <input type="text" value="<%= model.get('health_sub_center') %>" disabled=true />
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Tola</label>
+            <input type="text" id='name_of_tola' value="<%= model.get('name_of_tola') %>" />
+        </div>
+        <div class="col-sm-6">
+            <label>Education level</label>
+            <input type="text" id='education_level' value="<%= model.get('education_level') %>" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Incharge</label>
+            <input type="text" id='anm_incharge' value="<%= model.get('anm_incharge') %>" />
+        </div>
+        <div class="col-sm-6">
+            <label>Caste</label>
+            <input type="text" id='caste' value="<%= model.get('caste') %>" disabled=true/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Aadhar No.</label>
+            <input type="text" id='aadhar_no' value="<%= model.get('aadhar_no') %>" disabled=true/>
+        </div>
+        <div class="col-sm-6">
+            <label>Bank Account</label>
+            <input type="text" id='bank_account' value="<%= model.get('bank_account') %>" disabled=true/>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-6">
+            <button id="save" class="btn btn-success">Update</button>
+        </div>
+    </div>
+    <br>
+</div>

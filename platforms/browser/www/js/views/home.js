@@ -3,6 +3,7 @@ define(function (require) {
     let list = require('libraries/list');
     let tempC = require('libraries/c');
     var c = require('collections/home');
+    var sftemplate = require('text!../templates/home.html');
     var listView = list.extend({
         initialize: function (options) {
             listView.__super__.initialize.apply(this, arguments);
@@ -19,7 +20,7 @@ define(function (require) {
             this.utils.router.app_router.navigate('Meetings', { trigger: true });
         },
         sahiya: function () {
-            alert("sahiya");
+            this.utils.router.app_router.navigate('Sahiya', { trigger: true });
         },
         refresh: function () {
             this.render();
@@ -43,8 +44,11 @@ define(function (require) {
         loadDashboard: function () {
             let len = this.collection.length;
             if (len > 0) {
-                var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong>" + this.utils.user.dashboard_title + "</strong><h3></div></div>";
-                // var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong> Hellloooo</strong><h3></div></div>";
+                // var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong>" + this.utils.user.dashboard_title + "</strong><h3></div></div>";
+                let tpl = _.template(sftemplate);
+                var html = tpl({
+                    utils: this.utils
+                });
                 for (i = 0; i < len; i++) {
                     if (i % 2 == 0) {
                         html = html + "<div class='row'>";
@@ -79,13 +83,13 @@ define(function (require) {
                         self.collection.fetch({
                             type: "POST",
                             data: {
-                                userid: self.utils.user.id
-                                // userid: 1
+                                // userid: self.utils.user.id
+                                userid: 1
                             },
                             success: function (coll) {
-                                self.utils.loader.hide();
                                 self.insertData({ dropTable: true });
                                 self.loadDashboard();
+                                self.utils.loader.hide();
                             }
                         });
                     } else {
@@ -102,8 +106,8 @@ define(function (require) {
                                 }
                                 self.collection.add(d);
                             }
-                            self.utils.loader.hide();
                             self.loadDashboard();
+                            self.utils.loader.hide();
                         });
                     }
                     self.utils.loader.hide();

@@ -23,11 +23,13 @@ define(function (require) {
             } else {
                 postData = data.data;
             }
+            alert(JSON.stringify(postData));
             $.ajax({
                 url: this.url(),
                 data: postData,
                 type: 'POST',
                 success: function (response) {
+                    alert(JSON.stringify(response));
                     window.Veon.loader.hide();
                     _.each(response, function (v, i) {
                         self.set(i, v);

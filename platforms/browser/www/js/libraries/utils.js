@@ -8,6 +8,26 @@ var Veon = {
     setMain: function (d) {
         this.main = d;
     },
+    fields: {
+        home: ["id", "data", "name"],
+        login: ['id', 'description', 'login_status'],
+        sahiya: ["id",
+            "unique_id",
+            "name",
+            "unitname",
+            "unitid",
+            "clustid",
+            "phone",
+            "name_of_tola",
+            "health_sub_center",
+            "education_level",
+            "caste",
+            "anm_incharge",
+            "aadhar_no",
+            "bank_account",
+            "updated"],
+        meetings: ["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]
+    },
     api_url: "http://testapp.flagjharkhand.com/api/index.php/",
     checkInternet: function (data) {
         if (navigator.connection.type !== Connection.NONE) {

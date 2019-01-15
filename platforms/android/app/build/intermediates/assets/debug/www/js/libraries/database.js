@@ -86,15 +86,23 @@ define(function (require) {
                 if (window.Veon.object_key_exists(where, i)) {
                     return;
                 }
+                if (!window.Veon.object_value_exists(window.Veon.fields[table], i)) {
+                    return;
+                }
                 update[update.length] = i + "=?";
                 whereValues[whereValues.length] = v;
             });
             sql = sql + update.join(', ') + " WHERE ";
             _.each(where, function (v, i) {
+                if (!window.Veon.object_value_exists(window.Veon.fields[table], i)) {
+                    return;
+                }
                 whereValues[whereValues.length] = v;
                 whereCond[whereCond.length] = i + "=?";
             });
             sql = sql + whereCond.join(' AND ');
+            this.alert(sql);
+            this.alert(whereValues);
             this.db.executeSql(sql, whereValues, function (rs) {
                 console.log("updated");
                 success(rs);
@@ -111,15 +119,20 @@ define(function (require) {
                 _.each(data, function (v) {
                     values = [];
                     _.each(v, function (val, field) {
-                        valQues[valQues.length] = '?';
-                        valFields[valFields.length] = field;
+                        // valFields[valFields.length] = field;
+                        if (!window.Veon.object_value_exists(window.Veon.fields[table], field)) {
+                            return;
+                        }
                         if (val != null && (val.constructor === Array || typeof val === 'object')) {
                             values[values.length] = JSON.stringify(val);
                         } else {
                             values[values.length] = val;
                         }
                     });
-                    d[d.length] = ['INSERT INTO ' + table + '(' + valFields.join(",") + ') VALUES (' + valQues.join(", ") + ')', values];
+                    _.each(window.Veon.fields[table], function () {
+                        valQues[valQues.length] = '?';
+                    });
+                    d[d.length] = ['INSERT INTO ' + table + '(' + window.Veon.fields[table].join(",") + ') VALUES (' + valQues.join(", ") + ')', values];
                     valQues = [];
                     valFields = [];
                     values = [];

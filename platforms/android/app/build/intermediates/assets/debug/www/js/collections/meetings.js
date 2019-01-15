@@ -1,6 +1,6 @@
 define(function (require) {
     let c = require("libraries/c");
-    let home = c.extend({
+    let meeting = c.extend({
         endPoint: "mevent/list",
         // parse: function (res) {
         //     var result = [];
@@ -13,5 +13,5 @@ define(function (require) {
         //     return result;
         // }
     });
-    return home;
+    return meeting;
 });

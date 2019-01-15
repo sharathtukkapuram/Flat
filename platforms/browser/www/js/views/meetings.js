@@ -2,7 +2,7 @@ define(function (require) {
     var view = require('libraries/v');
     var lview = require('libraries/list');
     var c = require('collections/meetings');
-    var sftemplate = require('text!../templates/searchForm/meetings.html');
+    var sftemplate = require('text!../templates/searchForm/form.html');
     var list = lview.extend({
         additionalEvents: {
             "click .table_row": "meetingRecord"
@@ -48,7 +48,7 @@ define(function (require) {
             if (!_.isEmpty(self.lv)) {
                 this.lv.remove();
             }
-            this.lv = new list({ headers: { eventname: "Name", scheduled_date: "Scheduled", factName: "Fact Name", meetingName: "Meeting" }, collection: coll, title: "Events", el: ".list", initialLoad: false });
+            this.lv = new list({ headers: { meetingName: "Meeting", factName: "Sahiya", factCode: "Sahiya Code", unitName: "Unit" }, collection: coll, title: "Events", el: ".list", initialLoad: false });
             this.lv.render();
         },
         afterRender: function () {
@@ -82,6 +82,7 @@ define(function (require) {
         },
         getRecords: function () {
             var self = this;
+            // alert("getRecords");
             this.utils.checkInternet({
                 success: function (res) {
                     if (res) {
@@ -93,13 +94,23 @@ define(function (require) {
                             },
                             success: function (res) {
                                 self.utils.loader.hide();
-                                self.insertRecords({ dropTable: true });
+                                // self.database.alert(res);
+                                if (_.isEmpty(res.message)) {
+                                    self.insertRecords({ dropTable: true });
+                                }
+                            },
+                            error: function (res) {
+                                self.utils.loader.hide();
+                                self.database.alert(res);
                             }
                         });
                     } else {
+                        // alert("database");
+
                         self.database.select(["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]);
                         self.database.table("meetings");
                         self.database.execute(function (res) {
+                            self.collection.reset();
                             for (i = 0; i < res.rows.length; i++) {
                                 let d = {
                                     "id": res.rows.item(i).id,
@@ -171,12 +182,17 @@ define(function (require) {
                         success: function (res) {
                             if (res) {
                                 let coll = new c();
-                                coll.endPoint = "mevent/update";
+                                coll.endPoint = "mevent/massupdate";
+                                self.utils.loader.show();
+                                // self.database.alert(arr);
                                 coll.fetch({
-                                    type: "POST", data: arr, success: function () {
+                                    type: "POST", data: JSON.stringify(arr), success: function (res) {
                                         self.utils.loader.hide();
-                                        alert("update meetings");
                                         self.getRecords();
+                                    },
+                                    error: function (res, err) {
+                                        self.utils.loader.hide();
+                                        self.database.alert(err);
                                     }
                                 });
                             } else {
@@ -188,7 +204,6 @@ define(function (require) {
                     self.getRecords();
                 }
             });
-            self.getRecords();
         },
         render: function () {
             this.utils.loader.hide();

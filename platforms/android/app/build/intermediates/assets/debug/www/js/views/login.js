@@ -15,9 +15,11 @@ define(function (require) {
         additionalEvents: {
             "click #login_button": "login"
         },
-        success: function (model, self) {
+        success: function (model, self, res) {
+            self.utils.loader.show();
             model.unset('user_name');
             model.unset('password');
+            alert();
             if (model.get('id') != "") {
                 self.database.select(['id', 'description', 'login_status']);
                 self.database.table('user');
@@ -39,9 +41,11 @@ define(function (require) {
                         }, true);
                     }
                 });
+                self.utils.loader.hide();
                 window.Veon.user = model.toJSON();
                 self.utils.router.app_router.navigate('home', { trigger: true });
             } else {
+                self.utils.loader.hide();
                 self.alert.error("Login Failed. Please check Username and Password");
             }
         },
@@ -51,7 +55,8 @@ define(function (require) {
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
-            this.utils.loader.hide();
+            this.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
+            }, true);
             var self = this;
             $(".main_header").html("");
             $("#sidebar").html("");
@@ -74,6 +79,7 @@ define(function (require) {
             });
             let window_height = ($(window).height() - $('#loginForm').height()) / 3;
             this.$el.find('.login_div').css({ "margin-top": window_height });
+            this.utils.loader.hide();
         }
     });
     return login;

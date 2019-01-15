@@ -22,6 +22,22 @@ body{
     font-family: Arial, Verdana, Helvetica, sans-serif;
     font-size: 12px;
 }
+.tab_cstm div{
+    padding: 0px;
+}
+.tab_cstm img{
+    height: 55px;
+    
+}
+.tab_cstm{
+    border: #3498db solid 1px;
+    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 60px;
+    padding-left: 0px;
+    background-color: #fff;
+}
 /* Header*/
 .main_header{
     padding-top: 5px;
