@@ -29,6 +29,9 @@ body{
     height: 55px;
     
 }
+
+.glyphicon.glyphicon-refresh {  font-size: 30px; }
+#refresh { color: #fff; }
 .tab_cstm{
     border: #3498db solid 1px;
     margin: 5px;

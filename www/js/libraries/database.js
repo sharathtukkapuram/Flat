@@ -5,6 +5,7 @@ define(function (require) {
         };
         this.whereValues = [];
         this.createTable = function (table, fields, success, drop) {
+            window.Veon.loader.show();
             this.init();
             var query = [];
             if (drop != undefined) {
@@ -14,8 +15,10 @@ define(function (require) {
             }
             query[query.length] = 'CREATE TABLE IF NOT EXISTS ' + table + ' (' + fields.join(", ") + ')';
             this.db.sqlBatch(query, function () {
+                window.Veon.loader.hide();
                 success(true);
             }, function (error) {
+                window.Veon.loader.hide();
                 console.error('SQL batch ERROR: ' + error.message);
             });
         };
@@ -77,6 +80,7 @@ define(function (require) {
             if (data.constructor === Array) {
                 throw "invalid argument";
             }
+            window.Veon.loader.show();
             var sql = "Update " + table + " SET ";
             var whereValues = [];
             var whereCond = [];
@@ -101,17 +105,18 @@ define(function (require) {
                 whereCond[whereCond.length] = i + "=?";
             });
             sql = sql + whereCond.join(' AND ');
-            this.alert(sql);
-            this.alert(whereValues);
             this.db.executeSql(sql, whereValues, function (rs) {
+                window.Veon.loader.hide();
                 console.log("updated");
                 success(rs);
             }, function (error) {
+                window.Veon.loader.hide();
                 console.error('Update SQL statement ERROR: ' + error.message);
             });
         };
         this.insertData = function (data, table, success) {
             if (data.constructor === Array) {
+                window.Veon.loader.show();
                 var self = this;
                 var d = [];
                 var valQues = [];
@@ -139,10 +144,12 @@ define(function (require) {
                 });
                 // this.alert(d);
                 this.db.sqlBatch(d, function () {
+                    window.Veon.loader.hide();
                     console.log("inserted succesfully");
                     success(true);
                     // alert('inserted pol');
                 }, function (error) {
+                    window.Veon.loader.hide();
                     console.log('SQL batch ERROR: ' + error.message);
                 });
             } else {
@@ -156,6 +163,7 @@ define(function (require) {
             if (_.isEmpty(this.tableKey)) {
                 throw 'table not defined';
             }
+            window.Veon.loader.show();
             var query = 'SELECT ' + this.selectKey + ' FROM ' + this.tableKey;
             if (!_.isEmpty(this.whereValues)) {
                 query = query + ' WHERE ';
@@ -166,8 +174,10 @@ define(function (require) {
             }
             // this.alert(query);
             this.db.executeSql(query, this.whereValues, function (rs) {
+                window.Veon.loader.hide();
                 success(rs);
             }, function (error) {
+                window.Veon.loader.hide();
                 console.error('SELECT SQL statement ERROR: ' + error.message);
             });
             self.reset_query();

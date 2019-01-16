@@ -2,7 +2,7 @@ define(function (require) {
     return function () {
         this.utils = window.Veon;
         this.init = function (m, t, id) {
-            // this.utils.is_authenticated();
+            this.utils.is_authenticated();
             if (!_.isEmpty(this.utils[m])) {
                 this.utils[m].remove();
             }

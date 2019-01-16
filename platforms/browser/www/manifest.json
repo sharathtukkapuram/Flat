@@ -1,8 +1,8 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "Flat",
-  "short_name": "Flat",
+  "name": "PLA",
+  "short_name": "PLA",
   "version": "com.flat.test",
   "description": "Hello World sample application that responds to the deviceready event.",
   "author": "PhoneGap Team",

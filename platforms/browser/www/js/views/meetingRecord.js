@@ -14,7 +14,7 @@ define(function (require) {
             var self = this;
             this.model.set('updated', "1");
             this.utils.loader.show();
-            alert(this.model.get('id'));
+            // alert(this.model.get('id'));
             self.utils.loader.hide();
             this.database.updateData(this.model.toJSON(), "meetings", { id: this.model.get('id') }, function (res) {
                 self.alert.success("Successfully saved. Pushing to server...");
@@ -37,7 +37,7 @@ define(function (require) {
                                 self.utils.loader.hide();
                             }
                         });
-                    }else{
+                    } else {
                         self.alert.error("Device offline.");
                         self.utils.router.app_router.navigate('Meetings', { trigger: true });
                     }
@@ -57,11 +57,11 @@ define(function (require) {
                     _.each(row, function (v, i) {
                         self.model.set(i, v);
                     });
-                    self.database.alert(self.model.toJSON());
+                    // self.database.alert(self.model.toJSON());
                     let tpl = _.template(template);
                     self.$el.html(tpl({ model: self.model }));
                 } else {
-                    alert("no record found");
+                    self.alert.error("No record found");
                 }
             });
 

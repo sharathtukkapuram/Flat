@@ -16,12 +16,11 @@ define(function (require) {
             "click #login_button": "login"
         },
         success: function (model, self, res) {
-            self.utils.loader.show();
             model.unset('user_name');
             model.unset('password');
-            alert();
             if (model.get('id') != "") {
-                self.database.select(['id', 'description', 'login_status']);
+                self.database.createTable('user', self.utils.fields['user'], function (res) { }, false);
+                self.database.select(self.utils.fields['user']);
                 self.database.table('user');
                 self.database.execute(function (res) {
                     if (res.rows.length > 0) {
@@ -32,31 +31,36 @@ define(function (require) {
                                     console.log('insert', res);
                                 });
                             }, true);
+                            self.database.createTable('meetings', self.utils.fields['meetings'], function (res) { }, true);
+                            self.database.createTable('sahiya', self.utils.fields['sahiya'], function (res) { }, true);
+                            self.database.createTable('home', self.utils.fields['home'], function (res) { }, true);
                         }
                     } else {
                         self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
                             self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
-                                console.log('insert', res);
+                                alert("ogin insert");
                             });
                         }, true);
                     }
                 });
-                self.utils.loader.hide();
+                self.$el.html('');
                 window.Veon.user = model.toJSON();
                 self.utils.router.app_router.navigate('home', { trigger: true });
+                self.utils.loader.hide();
             } else {
                 self.utils.loader.hide();
                 self.alert.error("Login Failed. Please check Username and Password");
             }
         },
         login: function () {
+            this.utils.loader.show();
             this.model.set('id', 'login');
             this.model.endPoint = "mauth/authenticate";
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
-            this.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
-            }, true);
+            // this.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
+            // }, true);
             var self = this;
             $(".main_header").html("");
             $("#sidebar").html("");

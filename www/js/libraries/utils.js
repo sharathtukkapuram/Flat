@@ -10,7 +10,7 @@ var Veon = {
     },
     fields: {
         home: ["id", "data", "name"],
-        login: ['id', 'description', 'login_status'],
+        user: ['id', 'description', 'login_status'],
         sahiya: ["id",
             "unique_id",
             "name",
@@ -72,14 +72,20 @@ var Veon = {
         }
     },
     is_authenticated: function () {
-        if (this.cookie.get("user_id") == "" || this.cookie.get("rest_id") == "") {
-            window.location.href = "#login";
-            window.location.reload();
-        }
-        $.post("../backEnd/login/authenticate", function (res) {
-            if (!res.status) {
-                window.location.href = "#login";
-                window.location.reload();
+        var self = this;
+        this.checkInternet({
+            success: function (res) {
+                if (res) {
+                    $.post(self.api_url + "mauth/isvalid", { token: self.user.token }, function (res) {
+                        if (!res.message) {
+                            require(['libraries/database'], function (db) {
+                                let _db = new db();
+                                _db.createTable("login", self.fields['login'], function () { }, true);
+                                window.location.href = "#login";
+                            });
+                        }
+                    });
+                }
             }
         });
     },

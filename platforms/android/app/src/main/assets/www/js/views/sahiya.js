@@ -68,37 +68,9 @@ define(function (require) {
         insertRecords: function (data) {
             var self = this;
             if (data.dropTable) {
-                self.database.createTable("sahiya", ["id",
-                    "unique_id",
-                    "name",
-                    "unitname",
-                    "unitid",
-                    "clustid",
-                    "phone",
-                    "name_of_tola",
-                    "health_sub_center",
-                    "education_level",
-                    "caste",
-                    "anm_incharge",
-                    "aadhar_no",
-                    "bank_account",
-                    "updated"], function (res) { }, true);
+                self.database.createTable("sahiya", this.utils.fields['sahiya'], function (res) { }, true);
             } else {
-                self.database.createTable("sahiya", ["id",
-                    "unique_id",
-                    "name",
-                    "unitname",
-                    "unitid",
-                    "clustid",
-                    "phone",
-                    "name_of_tola",
-                    "health_sub_center",
-                    "education_level",
-                    "caste",
-                    "anm_incharge",
-                    "aadhar_no",
-                    "bank_account",
-                    "updated"], function () { }, false);
+                self.database.createTable("sahiya", this.utils.fields['sahiya'], function () { }, false);
             }
             this.collection.forEach(function (model) {
                 model.set("updated", "0");
@@ -121,26 +93,11 @@ define(function (require) {
                             },
                             success: function (res) {
                                 self.utils.loader.hide();
-                                self.database.alert(res);
                                 self.insertRecords({ dropTable: true });
                             }
                         });
                     } else {
-                        self.database.select(["id",
-                            "unique_id",
-                            "name",
-                            "unitname",
-                            "unitid",
-                            "clustid",
-                            "phone",
-                            "name_of_tola",
-                            "health_sub_center",
-                            "education_level",
-                            "caste",
-                            "anm_incharge",
-                            "aadhar_no",
-                            "bank_account",
-                            "updated"]);
+                        self.database.select(self.utils.fields['sahiya']);
                         self.database.table("sahiya");
                         self.database.execute(function (res) {
                             self.collection.reset();
@@ -164,46 +121,17 @@ define(function (require) {
                                 };
                                 self.collection.add(d);
                             }
-                            self.database.alert(self.collection.toJSON());
                         });
                     }
                 }
             });
         },
         syncRecords: function () {
+            this.utils.loader.show();
             var arr = [];
             var self = this;
-            self.database.createTable("sahiya", ["id",
-                "unique_id",
-                "name",
-                "unitname",
-                "unitid",
-                "clustid",
-                "phone",
-                "name_of_tola",
-                "health_sub_center",
-                "education_level",
-                "caste",
-                "anm_incharge",
-                "aadhar_no",
-                "bank_account",
-                "updated"], function () { }, false);
-
-            self.database.select(["id",
-                "unique_id",
-                "name",
-                "unitname",
-                "unitid",
-                "clustid",
-                "phone",
-                "name_of_tola",
-                "health_sub_center",
-                "education_level",
-                "caste",
-                "anm_incharge",
-                "aadhar_no",
-                "bank_account",
-                "updated"]);
+            self.database.createTable("sahiya", this.utils.fields['sahiya'], function () { }, false);
+            self.database.select(this.utils.fields['sahiya']);
             self.database.table("sahiya");
             self.database.where("AND", "updated", "1");
             self.database.execute(function (res) {
@@ -233,11 +161,15 @@ define(function (require) {
                             if (res) {
                                 let coll = new c();
                                 coll.endPoint = "msahiya/massupdate";
+                                self.utils.loader.show();
                                 coll.fetch({
-                                    type: "POST", data: arr, success: function () {
+                                    type: "POST", data: JSON.stringify(arr), success: function (res) {
                                         self.utils.loader.hide();
-                                        alert("update sahiya");
                                         self.getRecords();
+                                    },
+                                    error: function (res, err) {
+                                        self.utils.loader.hide();
+                                        self.database.alert(err);
                                     }
                                 });
                             } else {
@@ -246,6 +178,7 @@ define(function (require) {
                         }
                     });
                 } else {
+                    self.utils.loader.hide();
                     self.getRecords();
                 }
             });

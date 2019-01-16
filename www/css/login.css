@@ -1,13 +1,9 @@
 body {
-    background-image: url("../img/test.png");
-    height: 200%;
-    background-size: cover;
+    background-image:url(../img/test.png);
+    height: 100%; 
     background-position: center;
-    -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
     background-repeat: no-repeat;
-    width: auto;
+    background-size: auto;
 }
 
 .login-logo {

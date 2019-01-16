@@ -45,7 +45,7 @@
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
-    <name>Flat</name>
+    <name>PLA</name>
     <description>
         Hello World sample application that responds to the deviceready event.
     </description>
