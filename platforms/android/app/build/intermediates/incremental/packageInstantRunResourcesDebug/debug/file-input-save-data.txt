@@ -1,6 +1,6 @@
 #Internal package file, do not edit.
-#Wed Jan 16 01:58:29 IST 2019
-2.path=www/spec/lib/jasmine-1.2.0/MIT.LICENSE
+#Thu Jan 17 22:34:45 IST 2019
+2.path=www/img/sahiya.svg
 14.set=ASSET
 107.baseType=DIRECTORY
 88.baseType=DIRECTORY
@@ -73,7 +73,7 @@
 167.set=ASSET
 174.baseType=DIRECTORY
 54.baseType=DIRECTORY
-3.path=www/img/sahiya.svg
+3.path=www/spec/lib/jasmine-1.2.0/MIT.LICENSE
 24.set=ASSET
 128.set=ASSET
 70.set=ASSET
@@ -82,7 +82,7 @@
 108.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 135.set=ASSET
 135.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-105.path=www/res/screen/android/drawable-land-xxhdpi-screen.png
+105.path=www/js/collections/sahiya.js
 187.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 110.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 157.path=www/res/screen/android/drawable-port-mdpi-screen.png
@@ -147,7 +147,7 @@
 168.baseType=DIRECTORY
 145.set=ASSET
 136.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
-106.path=www/js/collections/sahiya.js
+106.path=www/res/screen/android/drawable-land-xxhdpi-screen.png
 188.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 111.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 151.baseType=DIRECTORY
@@ -578,7 +578,7 @@ count=190
 126.path=www/res/icon/windows/Square71x71Logo.scale-240.png
 131.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 178.path=www/res/screen/windows/SplashScreenPhone.scale-240.png
-101.path=www/plugins/cordova-plugin-file/www/FileUploadResult.js
+101.path=www/js/templates/Record/sahiya.html
 183.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 153.path=www/js/libraries/searchForm.js
 141.set=ASSET
@@ -600,7 +600,7 @@ count=190
 16.baseType=DIRECTORY
 136.baseType=DIRECTORY
 53.path=www/js/templates/success_alert.html
-80.path=www/res/icon/windows/StoreLogo.scale-100.png
+80.path=www/js/templates/searchForm/form.html
 19.set=ASSET
 170.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 131.baseType=DIRECTORY
@@ -647,7 +647,7 @@ count=190
 127.path=www/res/screen/ios/Default-Landscape@2x~ipad.png
 132.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 179.path=www/plugins/cordova-plugin-file/www/Metadata.js
-102.path=www/js/templates/Record/sahiya.html
+102.path=www/plugins/cordova-plugin-file/www/FileUploadResult.js
 184.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 154.path=www/res/icon/windows/Square150x150Logo.scale-100.png
 151.set=ASSET
@@ -667,7 +667,7 @@ count=190
 84.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 54.path=www/res/icon/windows/Wide310x150Logo.scale-240.png
 49.baseType=DIRECTORY
-81.path=www/js/templates/searchForm/form.html
+81.path=www/res/icon/windows/StoreLogo.scale-100.png
 29.set=ASSET
 171.base=C\:\\xampp\\htdocs\\Flat\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 75.set=ASSET

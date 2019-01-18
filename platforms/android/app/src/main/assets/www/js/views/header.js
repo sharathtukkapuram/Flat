@@ -7,7 +7,7 @@ define(function (require) {
             "click #logout": "logout"
         },
         logout: function () {
-            this.database.createTable("login", this.utils.fields['login'], function () { }, true);
+            this.database.createTable("user", this.utils.fields['user'], function () { }, true);
             window.location.href = "#login";
         },
         el: '.main_header',

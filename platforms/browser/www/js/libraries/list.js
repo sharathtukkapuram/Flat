@@ -54,6 +54,7 @@ define(function (require) {
         beforeRender: function(){},
         afterRender: function(){},
         render: function () {
+            this.utils.loader.show();
             this.beforeRender();
             if (this.collection.length > 0) {
                 if (this.loadHeaders) {

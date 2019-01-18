@@ -38,7 +38,6 @@ define(function (require) {
                     } else {
                         self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
                             self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
-                                alert("ogin insert");
                             });
                         }, true);
                     }
@@ -59,8 +58,8 @@ define(function (require) {
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
-            // this.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
-            // }, true);
+            this.database.createTable('user',this.utils.fields['user'], function (res) {
+            }, false);
             var self = this;
             $(".main_header").html("");
             $("#sidebar").html("");

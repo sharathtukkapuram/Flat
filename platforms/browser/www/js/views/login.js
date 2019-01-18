@@ -58,8 +58,8 @@ define(function (require) {
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
-            // this.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
-            // }, true);
+            this.database.createTable('user',this.utils.fields['user'], function (res) {
+            }, false);
             var self = this;
             $(".main_header").html("");
             $("#sidebar").html("");

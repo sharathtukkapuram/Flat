@@ -8,48 +8,48 @@
   },
   "installed_plugins": {
     "cordova-plugin-battery-status": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-camera": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-dialogs": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-geolocation": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-globalization": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-inappbrowser": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-media-capture": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-network-information": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.flat.test"
-    },
-    "cordova-sqlite-ext": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     },
     "cordova-plugin-x-toast": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
+    },
+    "cordova-sqlite-ext": {
+      "PACKAGE_NAME": "com.demo.pla"
     }
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
-      "PACKAGE_NAME": "com.flat.test"
+      "PACKAGE_NAME": "com.demo.pla"
     }
   }
 }

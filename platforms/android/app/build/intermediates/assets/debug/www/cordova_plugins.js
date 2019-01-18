@@ -371,19 +371,19 @@ module.exports = [
     ]
   },
   {
-    "id": "cordova-sqlite-ext.SQLitePlugin",
-    "file": "plugins/cordova-sqlite-ext/www/SQLitePlugin.js",
-    "pluginId": "cordova-sqlite-ext",
-    "clobbers": [
-      "SQLitePlugin"
-    ]
-  },
-  {
     "id": "cordova-plugin-x-toast.Toast",
     "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
     "pluginId": "cordova-plugin-x-toast",
     "clobbers": [
       "window.plugins.toast"
+    ]
+  },
+  {
+    "id": "cordova-sqlite-ext.SQLitePlugin",
+    "file": "plugins/cordova-sqlite-ext/www/SQLitePlugin.js",
+    "pluginId": "cordova-sqlite-ext",
+    "clobbers": [
+      "SQLitePlugin"
     ]
   }
 ];
@@ -401,9 +401,9 @@ module.exports.metadata =
   "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
   "cordova-plugin-vibration": "2.1.6",
-  "cordova-sqlite-ext": "2.3.0",
   "cordova-plugin-whitelist": "1.3.3",
-  "cordova-plugin-x-toast": "2.7.2"
+  "cordova-plugin-x-toast": "2.7.2",
+  "cordova-sqlite-ext": "2.3.0"
 };
 // BOTTOM OF METADATA
 });

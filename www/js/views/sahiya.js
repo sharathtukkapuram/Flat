@@ -169,7 +169,8 @@ define(function (require) {
                                     },
                                     error: function (res, err) {
                                         self.utils.loader.hide();
-                                        self.database.alert(err);
+                                        self.alert.error("Error has occured while Updating old data. Please try again");
+                                        // self.database.alert(err);
                                     }
                                 });
                             } else {

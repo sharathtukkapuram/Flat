@@ -21,7 +21,7 @@ INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifes
 INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:1-26:12
 INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:1-26:12
 	package
-		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:102-125
+		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:102-124
 		INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -31,7 +31,7 @@ INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifes
 	android:hardwareAccelerated
 		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:11-45
 	xmlns:android
-		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:126-184
+		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:125-183
 	android:versionCode
 		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:2:46-73
 		INJECTED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml
@@ -66,7 +66,7 @@ MERGED from [com.android.support:support-v4:24.1.1] C:\Users\shara\.gradle\cache
 		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:5:18-52
 	android:icon
 		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:5:53-80
-activity#com.flat.test.MainActivity
+activity#com.demo.pla.MainActivity
 ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:6:9-11:20
 	android:label
 		ADDED from C:\xampp\htdocs\Flat\platforms\android\app\src\main\AndroidManifest.xml:6:97-134
