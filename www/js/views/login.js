@@ -11,14 +11,16 @@ define(function (require) {
         el: '.main',
         initialize: function () {
             login.__super__.initialize.apply(this, arguments);
+            this.model.set('user_name', "");
+            this.model.set('password', "");
         },
         additionalEvents: {
             "click #login_button": "login"
         },
         success: function (model, self, res) {
-            model.unset('user_name');
-            model.unset('password');
-            if (model.get('id') != "") {
+            if (model.get('id') != undefined && model.get('id') != "") {
+                model.unset('user_name');
+                model.unset('password');
                 self.database.createTable('user', self.utils.fields['user'], function (res) { }, false);
                 self.database.select(self.utils.fields['user']);
                 self.database.table('user');
@@ -44,21 +46,26 @@ define(function (require) {
                 });
                 self.$el.html('');
                 window.Veon.user = model.toJSON();
+                window.localStorage.setItem("token_id", window.Veon.user.token);
                 self.utils.router.app_router.navigate('home', { trigger: true });
                 self.utils.loader.hide();
             } else {
+                model.unset("message");
                 self.utils.loader.hide();
                 self.alert.error("Login Failed. Please check Username and Password");
             }
         },
         login: function () {
+            if (this.model.get('user_name') == undefined || this.model.get('password') == undefined || this.model.get('user_name') == "" || this.model.get('password') == "") {
+                this.alert.error("Please fill in the fields.");
+                return;
+            }
             this.utils.loader.show();
-            this.model.set('id', 'login');
             this.model.endPoint = "mauth/authenticate";
             this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
         },
         render: function () {
-            this.database.createTable('user',this.utils.fields['user'], function (res) {
+            this.database.createTable('user', this.utils.fields['user'], function (res) {
             }, false);
             var self = this;
             $(".main_header").html("");

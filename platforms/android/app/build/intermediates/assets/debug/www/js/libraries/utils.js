@@ -76,11 +76,19 @@ var Veon = {
         this.checkInternet({
             success: function (res) {
                 if (res) {
-                    $.post(self.api_url + "mauth/isvalid", { token: self.user.token }, function (res) {
+                    if (window.localStorage.getItem("token_id") == "" || _.isUndefined(window.localStorage.getItem("token_id"))) {
+                        require(['libraries/database'], function (db) {
+                            let _db = new db();
+                            _db.createTable("user", self.fields['user'], function () { }, true);
+                            window.location.href = "#login";
+                        });
+                        return;
+                    }
+                    $.post(self.api_url + "mauth/isvalid", { token: window.localStorage.getItem("token_id") }, function (res) {
                         if (!res.message) {
                             require(['libraries/database'], function (db) {
                                 let _db = new db();
-                                _db.createTable("login", self.fields['login'], function () { }, true);
+                                _db.createTable("user", self.fields['user'], function () { }, true);
                                 window.location.href = "#login";
                             });
                         }

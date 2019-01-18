@@ -5,6 +5,9 @@ define(function (require) {
         };
         this.whereValues = [];
         this.createTable = function (table, fields, success, drop) {
+            if (_.isUndefined(fields)) {
+                return;
+            }
             window.Veon.loader.show();
             this.init();
             var query = [];

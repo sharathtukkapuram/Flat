@@ -81,7 +81,7 @@ define(function (require) {
                     message: msg,
                     duration: 5000, // 2000 ms
                     position: "bottom",
-                    addPixelsY: -40,
+                    addPixelsY: -50,
                     styling: {
                         opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
                         backgroundColor: '#0e960e', // make sure you use #RRGGBB. Default #333333
@@ -95,7 +95,7 @@ define(function (require) {
                     message: msg,
                     duration: 5000, // 2000 ms
                     position: "bottom",
-                    addPixelsY: -40,
+                    addPixelsY: -50,
                     styling: {
                         opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
                         backgroundColor: '#dc3545', // make sure you use #RRGGBB. Default #333333
@@ -107,8 +107,20 @@ define(function (require) {
         },
         showErrors: function (obj, response, options) {
             window.Veon.loader.hide();
-            alert(JSON.stringify(response));
-            console.error(response);
+            // self.alert.error(response);
+            window.plugins.toast.showWithOptions({
+                message: "ERROR",
+                duration: 5000, // 2000 ms
+                position: "bottom",
+                addPixelsY: -50,
+                styling: {
+                    opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                    backgroundColor: '#dc3545', // make sure you use #RRGGBB. Default #333333
+                    textColor: '#FFFFFF', // Ditto. Default #FFFFFF
+                    textSize: 20.5, // Default is approx. 13
+                }
+            });
+            console.log(response);
         },
         originalEvents: {
             "change input": "_bindChanges",

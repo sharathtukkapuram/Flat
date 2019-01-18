@@ -20,7 +20,11 @@ define(function (require) {
         },
         additionalEvents: {
             "change #cluster": "populateUnit",
-            "click #search": "search"
+            "click #search": "search",
+            "click #back": "home"
+        },
+        home: function () {
+            this.utils.router.app_router.navigate('home', { trigger: true });
         },
         populateUnit: function (e) {
             let cluster = this.$el.find(e.target).val();
@@ -169,7 +173,8 @@ define(function (require) {
                                     },
                                     error: function (res, err) {
                                         self.utils.loader.hide();
-                                        self.database.alert(err);
+                                        self.alert.error("Error has occured while Updating old data. Please try again");
+                                        // self.database.alert(err);
                                     }
                                 });
                             } else {

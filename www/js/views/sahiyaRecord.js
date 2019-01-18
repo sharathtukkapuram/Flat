@@ -8,7 +8,11 @@ define(function (require) {
             record.__super__.initialize.apply(this, arguments);
         },
         additionalEvents: {
-            "click #save": "save"
+            "click #save": "save",
+            "click #cancel": "cancel"
+        },
+        cancel: function () {
+            this.utils.router.app_router.navigate('Sahiya', { trigger: true });
         },
         save: function () {
             var self = this;

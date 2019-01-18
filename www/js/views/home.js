@@ -73,7 +73,7 @@ define(function (require) {
         },
         render: function () {
             var self = this;
-            this.$el.html();
+            this.$el.html("");
             this.utils.loader.show();
             this.utils.checkInternet({
                 success: function (res) {
