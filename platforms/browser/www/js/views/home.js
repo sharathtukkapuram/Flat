@@ -83,8 +83,8 @@ define(function (require) {
                         self.collection.fetch({
                             type: "POST",
                             data: {
-                                // userid: self.utils.user.id
-                                userid: 1
+                                userid: self.utils.user.id
+                                // userid: 1
                             },
                             success: function (coll) {
                                 self.insertData({ dropTable: true });

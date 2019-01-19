@@ -29,9 +29,6 @@ body{
     height: 55px;
     
 }
-
-.glyphicon.glyphicon-refresh {  font-size: 30px; }
-#refresh { color: #fff; }
 .tab_cstm{
     border: #3498db solid 1px;
     margin: 5px;
@@ -128,6 +125,9 @@ Loader start
     opacity: 0.5;
     z-index: 9999;
 }
+
+.glyphicon.glyphicon-refresh {  font-size: 20px; }
+#refresh { color: #fff; margin-top: 5px;float: right; color: #0e960e;}
 
 /*
 Loader

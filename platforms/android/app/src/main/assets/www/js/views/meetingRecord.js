@@ -50,6 +50,9 @@ define(function (require) {
         },
         model: new model(),
         render: function () {
+            if (this.id == undefined && this.id == "") {
+                return;
+            }
             var self = this;
             this.database.select(["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]);
             this.database.table("meetings");

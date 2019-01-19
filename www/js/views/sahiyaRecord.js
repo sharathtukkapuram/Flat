@@ -78,7 +78,6 @@ define(function (require) {
                     _.each(row, function (v, i) {
                         self.model.set(i, v);
                     });
-                    self.database.alert(self.model.toJSON());
                     let tpl = _.template(template);
                     self.$el.html(tpl({ model: self.model }));
                 } else {

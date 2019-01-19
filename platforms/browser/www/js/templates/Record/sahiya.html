@@ -11,12 +11,12 @@
     <hr class='hr_line'>
     <div class="row">
         <div class="col-sm-6">
-            <label>Sahiya Name</label>
-            <input type="text" value="<%= model.get('name') %>" id="name" />
-        </div>
-        <div class="col-sm-6">
             <label>Sahiya Code</label>
             <input type="text" value="<%= model.get('id') %>" disabled=true />
+        </div>
+        <div class="col-sm-6">
+            <label>Caste</label>
+            <input type="text" id='caste' value="<%= model.get('caste') %>" disabled=true />
         </div>
     </div>
     <div class="row">
@@ -28,12 +28,40 @@
             <label>Health Center</label>
             <input type="text" value="<%= model.get('health_sub_center') %>" disabled=true />
         </div>
-       
+
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <label>Tola</label>
-            <input type="text" id='name_of_tola' value="<%= model.get('name_of_tola') %>" />
+            <label>Aadhar No.</label>
+            <%
+            if(model.get('aadhar_no') == undefined || model.get('aadhar_no') == ""){
+            %>
+            <input type="text" id='aadhar_no' value="No" disabled=true />
+            <%
+            }else{
+            %>
+            <input type="text" id='aadhar_no' value="Yes" disabled=true />
+            <%}
+            %>
+        </div>
+        <div class="col-sm-6">
+            <label>Bank Account</label>
+            <%
+            if(model.get('bank_account') == undefined || model.get('bank_account') == ""){
+            %>
+            <input type="text" id='bank_account' value="No" disabled=true />
+            <%
+            }else{
+            %>
+            <input type="text" id='bank_account' value="Yes" disabled=true />
+            <%}
+            %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <label>Sahiya Name</label>
+            <input type="text" value="<%= model.get('name') %>" id="name" />
         </div>
         <div class="col-sm-6">
             <label>Education level</label>
@@ -46,18 +74,8 @@
             <input type="text" id='anm_incharge' value="<%= model.get('anm_incharge') %>" />
         </div>
         <div class="col-sm-6">
-            <label>Caste</label>
-            <input type="text" id='caste' value="<%= model.get('caste') %>" disabled=true/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <label>Aadhar No.</label>
-            <input type="text" id='aadhar_no' value="<%= model.get('aadhar_no') %>" disabled=true/>
-        </div>
-        <div class="col-sm-6">
-            <label>Bank Account</label>
-            <input type="text" id='bank_account' value="<%= model.get('bank_account') %>" disabled=true/>
+            <label>Tola</label>
+            <input type="text" id='name_of_tola' value="<%= model.get('name_of_tola') %>" />
         </div>
     </div>
     <br>

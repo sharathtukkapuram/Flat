@@ -46,6 +46,7 @@ define(function (require) {
                 });
                 self.$el.html('');
                 window.Veon.user = model.toJSON();
+                self.database.alert(self.sort({ data: window.Veon.user.geodata }));
                 window.localStorage.setItem("token_id", window.Veon.user.token);
                 self.utils.router.app_router.navigate('home', { trigger: true });
                 self.utils.loader.hide();
@@ -81,6 +82,7 @@ define(function (require) {
                         self.model.set(i, v);
                     });
                     window.Veon.user = self.model.toJSON();
+                    self.database.alert(self.sort({ data: window.Veon.user.geodata }));
                     self.utils.router.app_router.navigate('home', { trigger: true });
                 } else {
                     var tpl = _.template(template);

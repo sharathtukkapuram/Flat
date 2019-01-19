@@ -30,6 +30,38 @@ define(function (require) {
                 self[i] = v;
             });
         },
+        sort: function (json) {
+            var self = this;
+            if (_.isUndefined(json) || _.isUndefined(json.data)) {
+                return;
+            }
+            data = json.data;
+            this.database.alert(data);
+            if (_.isArray(data)) {
+                if (_.isUndefined(json.sortValueType)) {
+                    if (_.isObject(data[0]) || _.isArray(data[0])) {
+                        return data;
+                    }
+                    data.sort();
+                } else if (json.sortValueType == "Number") {
+                    data.sort(function (a, b) { return a - b });
+                }
+                return data;
+            } else if (_.isObject(data)) {
+                if (_.isUndefined(sortdata)) {
+                    var sortdata = {};
+                    var sortKeys = [];
+                }
+                _.each(data, function (v, i) {
+                    sortKeys[sortKeys.length] = i;
+                });
+                sortKeys.sort();
+                _.each(sortKeys, function (v, i) {
+                    sortdata[i] = data[i];
+                });
+                return sortdata;
+            }
+        },
         removeFilter: function (field) {
             delete this.filters.and[field];
         },
