@@ -18,7 +18,7 @@ define(function (require) {
             var self = this;
             this.model.set('updated', "1");
             this.utils.loader.show();
-            alert(this.model.get('id'));
+            // alert(this.model.get('id'));
             self.utils.loader.hide();
             this.database.updateData(this.model.toJSON(), "sahiya", { id: this.model.get('id') }, function (res) {
                 self.alert.success("Successfully saved. Pushing to server...");
@@ -50,6 +50,9 @@ define(function (require) {
         },
         model: new model(),
         render: function () {
+            if (this.id == undefined && this.id == "") {
+                return;
+            }
             var self = this;
             this.database.select(["id",
                 "unique_id",
@@ -79,7 +82,7 @@ define(function (require) {
                     let tpl = _.template(template);
                     self.$el.html(tpl({ model: self.model }));
                 } else {
-                    alert("no record found");
+                    self.alert.error("no record found");
                 }
             });
 
