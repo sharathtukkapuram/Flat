@@ -42,6 +42,7 @@ define(function (require) {
             });
         },
         loadDashboard: function () {
+            var self = this;
             let len = this.collection.length;
             if (len > 0) {
                 // var html = "<div class='row'><div class='col-xs-4'><button id='meetings' class='btn btn-primary button'>Meetings</button></div><div class='col-xs-4'><button id='sahiya' class='btn btn-primary button'>Sahiya</button></div><div class='col-xs-4'><button id='refresh' class='btn btn-primary button'>Refresh</button></div></div><hr class='hr_line'><div class='row'><div class='col-sm-12'><h3><strong>" + this.utils.user.dashboard_title + "</strong><h3></div></div>";
@@ -60,11 +61,20 @@ define(function (require) {
                 }
                 this.$el.html(html);
                 var i = 0;
+                var titles = [];
                 this.collection.forEach(function (model) {
-                    let coll = new tempC(model.get("data"));
-                    let lv = new listView({ headers: { meeting: "Meeting", Planned: "Planned", Complete: "Complete", Pending: "Pending", Reject: "Reject" }, collection: coll, title: model.get('name'), el: ".dashboard_" + i, initialLoad: false });
-                    lv.render();
-                    i = i + 1;
+                    titles[titles.length] = model.get('name');
+                });
+                titles.sort();
+                _.each(titles, function(name){
+                    self.collection.forEach(function (model) {
+                        if(name == model.get('name')){
+                            let coll = new tempC(model.get("data"));
+                            let lv = new listView({ headers: { meeting: "Meeting", Planned: "Planned", Complete: "Complete", Pending: "Pending", Reject: "Reject" }, collection: coll, title: model.get('name'), el: ".dashboard_" + i, initialLoad: false });
+                            lv.render();
+                            i = i + 1;
+                        }
+                    });
                 });
             } else {
                 this.$el.html("No records found!!");

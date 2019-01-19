@@ -27,13 +27,23 @@ define(function (require) {
             this.utils.router.app_router.navigate('home', { trigger: true });
         },
         populateUnit: function (e) {
-            let cluster = this.$el.find(e.target).val();
+            var self = this;
+            var cluster = this.$el.find(e.target).val();
             var doc = this.$el.find('#units').html('');
             doc.append('<option value=""></option>');
             var count = 0;
+            var units = [];
             _.each(this.utils.user.geodata[cluster].units, function (v, i) {
-                doc.append('<option value="' + i + '">' + v.name + '</option>');
-                count = count + 1;
+                units[units.length] = v.name;
+            });
+            units.sort();
+            _.each(units, function (name) {
+                _.each(self.utils.user.geodata[cluster].units, function (v, i) {
+                    if (name == v.name) {
+                        doc.append('<option value="' + i + '">' + v.name + '</option>');
+                        count = count + 1;
+                    }
+                });
             });
             if (count == 1) {
                 doc.find("option").eq(0).prop("selected", true);

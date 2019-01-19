@@ -7,13 +7,21 @@
             <label>Cluster</label>
             <select class="select" id="cluster">
                 <%
+                var clusters = [];
                 _.each(window.Veon.user.geodata, function(v,i){
-                    %>
-                <option value="<%= i %>">
-                    <%= v.name %>
+                    clusters[clusters.length] = v.name;
+                });
+                clusters.sort();
+                _.each(clusters, function(name){
+                    _.each(window.Veon.user.geodata, function(data, id){
+                        if(name == data.name){%>
+                <option value="<%= id %>">
+                    <%= data.name %>
                 </option>
-                <%
-                });%>
+                <%}
+                    });
+                });
+                %>
             </select>
         </div>
         <div class="col-sm-6"><label>Unit</label><select class="select" id="units">
