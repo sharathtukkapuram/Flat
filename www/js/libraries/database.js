@@ -127,10 +127,10 @@ define(function (require) {
                 _.each(data, function (v) {
                     values = [];
                     _.each(v, function (val, field) {
-                        // valFields[valFields.length] = field;
                         if (!window.Veon.object_value_exists(window.Veon.fields[table], field)) {
                             return;
                         }
+                        valFields[valFields.length] = field;
                         if (val != null && (val.constructor === Array || typeof val === 'object')) {
                             values[values.length] = JSON.stringify(val);
                         } else {
@@ -140,7 +140,7 @@ define(function (require) {
                     _.each(window.Veon.fields[table], function () {
                         valQues[valQues.length] = '?';
                     });
-                    d[d.length] = ['INSERT INTO ' + table + '(' + window.Veon.fields[table].join(",") + ') VALUES (' + valQues.join(", ") + ')', values];
+                    d[d.length] = ['INSERT INTO ' + table + '(' + valFields.join(",") + ') VALUES (' + valQues.join(", ") + ')', values];
                     valQues = [];
                     valFields = [];
                     values = [];
