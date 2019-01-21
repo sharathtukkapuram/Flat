@@ -69,6 +69,25 @@ define(function (require) {
                         self.database.select(self.utils.fields['user']);
                         self.database.table('user');
                         self.database.where('AND', 'login_status', "0");
+                        self.database.execute(function (res) {
+                            if (res.rows.length > 0) {
+                                let row = res.rows.item(0);
+                                let data = JSON.parse(row.description);
+                                if (data.user_name == self.model.get('user_name') && data.password == self.model.get('password')) {
+                                    _.each(data, function (v, i) {
+                                        self.model.set(i, v);
+                                    });
+                                    window.Veon.user = self.model.toJSON();
+                                    self.utils.router.app_router.navigate('home', { trigger: true });
+                                } else {
+                                    self.alert.error("Login Failed. Please check Username and Password");
+                                }
+                                self.utils.loader.hide();
+                            } else {
+                                self.utils.loader.hide();
+                                self.alert.error("Login Failed. Please check Username and Password");
+                            }
+                        });
                     }
                 }
             });

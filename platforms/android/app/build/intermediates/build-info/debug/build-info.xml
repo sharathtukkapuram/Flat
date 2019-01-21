@@ -6,7 +6,7 @@
     density="xxhdpi"
     format="10"
     plugin-version="3.0.1"
-    timestamp="1548088444484"
+    timestamp="1548089126359"
     token="8999925747742140122"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -70,7 +70,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1548088444484"
+        timestamp="1548089126359"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\xampp\htdocs\Flat\platforms\android\app\build\outputs\apk\debug\app-debug.apk"
