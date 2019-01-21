@@ -45,8 +45,11 @@ define(function (require) {
                     }
                 });
             });
-            if (count == 1) {
-                doc.find("option").eq(0).prop("selected", true);
+            if (this.$el.find("#units").find("option").length == 1) {
+                this.$el.find("#units").find("option").eq(0).prop("selected", true);
+                this.$el.find("#units").prop("disabled", true);
+            } else {
+                this.$el.find("#units").prop("disabled", false);
             }
         },
         search: function () {
@@ -68,16 +71,9 @@ define(function (require) {
         afterRender: function () {
             if (this.$el.find("#cluster").find("option").length == 1) {
                 this.$el.find("#cluster").find("option").eq(0).prop("selected", true);
-                this.$el.find("#cluster").trigger("change");
                 this.$el.find("#cluster").prop("disabled", true);
             }
-            if (this.$el.find("#units").find("option").length == 1) {
-                this.$el.find("#units").find("option").eq(0).prop("selected", true);
-                this.$el.find("#units").trigger("change");
-                this.$el.find("#units").prop("disabled", true);
-            } else {
-                this.$el.find("#units").prop("disabled", false);
-            }
+            this.$el.find("#cluster").trigger("change");
         },
         insertRecords: function (data) {
             var self = this;

@@ -45,8 +45,11 @@ define(function (require) {
                     }
                 });
             });
-            if (count == 1) {
-                doc.find("option").eq(0).prop("selected", true);
+            if (this.$el.find("#units").find("option").length == 1) {
+                this.$el.find("#units").find("option").eq(0).prop("selected", true);
+                this.$el.find("#units").prop("disabled", true);
+            } else {
+                this.$el.find("#units").prop("disabled", false);
             }
         },
         search: function () {
@@ -68,23 +71,16 @@ define(function (require) {
         afterRender: function () {
             if (this.$el.find("#cluster").find("option").length == 1) {
                 this.$el.find("#cluster").find("option").eq(0).prop("selected", true);
-                this.$el.find("#cluster").trigger("change");
                 this.$el.find("#cluster").prop("disabled", true);
             }
-            if (this.$el.find("#units").find("option").length == 1) {
-                this.$el.find("#units").find("option").eq(0).prop("selected", true);
-                this.$el.find("#units").trigger("change");
-                this.$el.find("#units").prop("disabled", true);
-            } else {
-                this.$el.find("#units").prop("disabled", false);
-            }
+            this.$el.find("#cluster").trigger("change");
         },
         insertRecords: function (data) {
             var self = this;
             if (data.dropTable) {
-                self.database.createTable("meetings", ["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"], function (res) { }, true);
+                self.database.createTable("meetings", self.utils.fields['meetings'], function (res) { }, true);
             } else {
-                self.database.createTable("meetings", ["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"], function () { }, false);
+                self.database.createTable("meetings", self.utils.fields['meetings'], function () { }, false);
             }
             this.collection.forEach(function (model) {
                 model.set("updated", "0");
@@ -122,7 +118,7 @@ define(function (require) {
                     } else {
                         // alert("database");
 
-                        self.database.select(["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]);
+                        self.database.select(self.utils.fields['meetings']);
                         self.database.table("meetings");
                         self.database.execute(function (res) {
                             self.collection.reset();
@@ -160,9 +156,9 @@ define(function (require) {
         syncRecords: function () {
             var arr = [];
             var self = this;
-            self.database.createTable("meetings", ["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"], function () { }, false);
+            self.database.createTable("meetings", self.utils.fields['meetings'], function () { }, false);
 
-            self.database.select(["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]);
+            self.database.select(self.utils.fields['meetings']);
             self.database.table("meetings");
             self.database.where("AND", "updated", "1");
             self.database.execute(function (res) {

@@ -54,21 +54,7 @@ define(function (require) {
                 return;
             }
             var self = this;
-            this.database.select(["id",
-                "unique_id",
-                "name",
-                "unitname",
-                "unitid",
-                "clustid",
-                "phone",
-                "name_of_tola",
-                "health_sub_center",
-                "education_level",
-                "caste",
-                "anm_incharge",
-                "aadhar_no",
-                "bank_account",
-                "updated"]);
+            this.database.select(this.utils.fields['sahiya']);
             this.database.table("sahiya");
             this.database.where("AND", "id", this.id);
             this.database.execute(function (res) {
@@ -81,7 +67,7 @@ define(function (require) {
                     let tpl = _.template(template);
                     self.$el.html(tpl({ model: self.model }));
                 } else {
-                    self.alert.error("no record found");
+                    // self.alert.error("no record found");
                 }
             });
 

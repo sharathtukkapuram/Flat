@@ -19,8 +19,6 @@ define(function (require) {
         },
         success: function (model, self, res) {
             if (model.get('id') != undefined && model.get('id') != "") {
-                model.unset('user_name');
-                model.unset('password');
                 self.database.createTable('user', self.utils.fields['user'], function (res) { }, false);
                 self.database.select(self.utils.fields['user']);
                 self.database.table('user');
@@ -28,7 +26,7 @@ define(function (require) {
                     if (res.rows.length > 0) {
                         let row = res.rows.item(0);
                         if (row.id != model.get('id')) {
-                            self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
+                            self.database.createTable('user', self.utils.fields['user'], function (res) {
                                 self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
                                     console.log('insert', res);
                                 });
@@ -38,7 +36,7 @@ define(function (require) {
                             self.database.createTable('home', self.utils.fields['home'], function (res) { }, true);
                         }
                     } else {
-                        self.database.createTable('user', ['id', 'description', 'login_status'], function (res) {
+                        self.database.createTable('user', self.utils.fields['user'], function (res) {
                             self.database.insertData([{ id: model.get('id'), description: model.toJSON(), login_status: "1" }], 'user', function (res) {
                             });
                         }, true);
@@ -60,9 +58,20 @@ define(function (require) {
                 this.alert.error("Please fill in the fields.");
                 return;
             }
+            var self = this;
             this.utils.loader.show();
-            this.model.endPoint = "mauth/authenticate";
-            this.model.altPostSave({ error: this.showErrors, success: this.success, self: this });
+            this.utils.checkInternet({
+                success: function (res) {
+                    if (res) {
+                        self.model.endPoint = "mauth/authenticate";
+                        self.model.altPostSave({ error: self.showErrors, success: self.success, self: self });
+                    } else {
+                        self.database.select(self.utils.fields['user']);
+                        self.database.table('user');
+                        self.database.where('AND', 'login_status', "0");
+                    }
+                }
+            });
         },
         render: function () {
             this.database.createTable('user', this.utils.fields['user'], function (res) {
@@ -70,7 +79,7 @@ define(function (require) {
             var self = this;
             $(".main_header").html("");
             $("#sidebar").html("");
-            this.database.select(['id', 'description', 'login_status']);
+            this.database.select(self.utils.fields['user']);
             this.database.table('user');
             this.database.where('AND', 'login_status', "1");
             this.database.execute(function (res) {

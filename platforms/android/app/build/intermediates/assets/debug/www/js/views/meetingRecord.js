@@ -54,7 +54,7 @@ define(function (require) {
                 return;
             }
             var self = this;
-            this.database.select(["id", "eventname", "scheduled_date", "actual_date", "event_status_id", "distName", "clusterid", "unitid", "unitName", "factName", "factCode", "meetingName", "status", "st", "sc", "others", "women", "under15", "men", "pregnant_women", "updated"]);
+            this.database.select(this.utils.fields['meetings']);
             this.database.table("meetings");
             this.database.where("AND", "id", this.id);
             this.database.execute(function (res) {
@@ -68,7 +68,7 @@ define(function (require) {
                     let tpl = _.template(template);
                     self.$el.html(tpl({ model: self.model }));
                 } else {
-                    self.alert.error("No record found");
+                    // self.alert.error("No record found");
                 }
             });
 
