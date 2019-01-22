@@ -41,6 +41,25 @@ define(function (require) {
                 console.log(res);
             });
         },
+        getCounts: function () {
+            var self = this;
+            this.database.select(["id"]);
+            this.database.table('meetings');
+            this.database.where('AND', 'updated', "1");
+            this.database.execute(function (res) {
+                if (res.rows.length > 0) {
+                    self.$el.find('#meeting_count').html(res.rows.length);
+                }
+            });
+            this.database.select(["id"]);
+            this.database.table('sahiya');
+            this.database.where('AND', 'updated', "1");
+            this.database.execute(function (res) {
+                if (res.rows.length > 0) {
+                    self.$el.find('#sahiya_count').html(res.rows.length);
+                }
+            });
+        },
         loadDashboard: function () {
             var self = this;
             let len = this.collection.length;
@@ -50,6 +69,7 @@ define(function (require) {
                 var html = tpl({
                     utils: this.utils
                 });
+
                 for (i = 0; i < len; i++) {
                     if (i % 2 == 0) {
                         html = html + "<div class='row'>";
@@ -60,15 +80,16 @@ define(function (require) {
                     }
                 }
                 this.$el.html(html);
+                this.getCounts();
                 var i = 0;
                 var titles = [];
                 this.collection.forEach(function (model) {
                     titles[titles.length] = model.get('name');
                 });
                 titles.sort();
-                _.each(titles, function(name){
+                _.each(titles, function (name) {
                     self.collection.forEach(function (model) {
-                        if(name == model.get('name')){
+                        if (name == model.get('name')) {
                             let coll = new tempC(model.get("data"));
                             let lv = new listView({ headers: { meeting: "Meeting", Planned: "Planned", Complete: "Complete", Pending: "Pending", Reject: "Reject" }, collection: coll, title: model.get('name'), el: ".dashboard_" + i, initialLoad: false });
                             lv.render();

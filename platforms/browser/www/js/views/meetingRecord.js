@@ -19,6 +19,7 @@ define(function (require) {
             this.model.set('updated', "1");
             this.utils.loader.show();
             // alert(this.model.get('id'));
+            // self.database.alert(this.model.toJSON());
             self.utils.loader.hide();
             this.database.updateData(this.model.toJSON(), "meetings", { id: this.model.get('id') }, function (res) {
                 self.alert.success("Successfully saved. Pushing to server...");
